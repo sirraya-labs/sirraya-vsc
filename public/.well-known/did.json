@@ -1,0 +1,16 @@
+{
+  "@context": "https://www.w3.org/ns/did/v1",
+  "id": "did:web:sirraya.org",
+  "alsoKnownAs": [
+    "did:web:sirraya.org:actors/farmer",
+    "did:web:sirraya.org:actors/packer",
+    "did:web:sirraya.org:actors/customs-it",
+    "did:web:sirraya.org:actors/shipping",
+    "did:web:sirraya.org:actors/customs-sg",
+    "did:web:sirraya.org:actors/distributor",
+    "did:web:sirraya.org:actors/restaurant",
+    "did:web:sirraya.org:actors/icea",
+    "did:web:sirraya.org:actors/phyto",
+    "did:web:sirraya.org:actors/sfa"
+  ]
+}

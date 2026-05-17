@@ -1,0 +1,35 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:web:sirraya.org:actors/icea",
+  "controller": "did:web:sirraya.org:actors/icea",
+  "verificationMethod": [
+    {
+      "id": "did:web:sirraya.org:actors/icea#key-1",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:web:sirraya.org:actors/icea",
+      "publicKeyMultibase": "zed01c353b6fd72cc16e9ca186496d794364880aa95046ffed5a38b1d91b45b5a04ff"
+    }
+  ],
+  "assertionMethod": [
+    "did:web:sirraya.org:actors/icea#key-1"
+  ],
+  "authentication": [
+    "did:web:sirraya.org:actors/icea#key-1"
+  ],
+  "service": [
+    {
+      "id": "did:web:sirraya.org:actors/icea#metadata",
+      "type": "VSCActorMetadata",
+      "serviceEndpoint": {
+        "name": "ICEA Certification Body",
+        "role": "certificationBody",
+        "jurisdiction": "IT",
+        "license": {},
+        "domain": "sirraya.org"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:web:sirraya.org:actors/restaurant",
+  "controller": "did:web:sirraya.org:actors/restaurant",
+  "verificationMethod": [
+    {
+      "id": "did:web:sirraya.org:actors/restaurant#key-1",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:web:sirraya.org:actors/restaurant",
+      "publicKeyMultibase": "zed01d7c641bfb743b72c5fd8d6d895e8fa6f0bdcd7263efe49b250be17a7fbc475d7"
+    }
+  ],
+  "assertionMethod": [
+    "did:web:sirraya.org:actors/restaurant#key-1"
+  ],
+  "authentication": [
+    "did:web:sirraya.org:actors/restaurant#key-1"
+  ],
+  "service": [
+    {
+      "id": "did:web:sirraya.org:actors/restaurant#metadata",
+      "type": "VSCActorMetadata",
+      "serviceEndpoint": {
+        "name": "Casa Nostra Ristorante",
+        "role": "restaurant",
+        "jurisdiction": "SG",
+        "license": {
+          "type": "FoodBusinessOperator",
+          "number": "FBO-SG-2024-002",
+          "issuingAuthority": "Singapore Food Agency",
+          "validUntil": "2027-12-31"
+        },
+        "domain": "sirraya.org"
+      }
+    }
+  ]
+}

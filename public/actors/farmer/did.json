@@ -1,0 +1,40 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:web:sirraya.org:actors/farmer",
+  "controller": "did:web:sirraya.org:actors/farmer",
+  "verificationMethod": [
+    {
+      "id": "did:web:sirraya.org:actors/farmer#key-1",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:web:sirraya.org:actors/farmer",
+      "publicKeyMultibase": "zed0178151d3f35c850f0eefb97e377e03898688b899c56eefc392315f6e1c8c3094e"
+    }
+  ],
+  "assertionMethod": [
+    "did:web:sirraya.org:actors/farmer#key-1"
+  ],
+  "authentication": [
+    "did:web:sirraya.org:actors/farmer#key-1"
+  ],
+  "service": [
+    {
+      "id": "did:web:sirraya.org:actors/farmer#metadata",
+      "type": "VSCActorMetadata",
+      "serviceEndpoint": {
+        "name": "Azienda Agricola Russo",
+        "role": "farmer",
+        "jurisdiction": "IT",
+        "license": {
+          "type": "OrganicCertification",
+          "number": "IT-BIO-001-2024",
+          "issuingAuthority": "ICEA",
+          "validUntil": "2027-12-31"
+        },
+        "domain": "sirraya.org"
+      }
+    }
+  ]
+}

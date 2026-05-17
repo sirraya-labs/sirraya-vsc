@@ -1,0 +1,39 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:web:sirraya.org:actors/sfa",
+  "controller": "did:web:sirraya.org:actors/sfa",
+  "verificationMethod": [
+    {
+      "id": "did:web:sirraya.org:actors/sfa#key-1",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:web:sirraya.org:actors/sfa",
+      "publicKeyMultibase": "zed01a0952bb8cb78cbb0d64d62e5814658b873fe477ee612307c387a23bdb095a4c6"
+    }
+  ],
+  "assertionMethod": [
+    "did:web:sirraya.org:actors/sfa#key-1"
+  ],
+  "authentication": [
+    "did:web:sirraya.org:actors/sfa#key-1"
+  ],
+  "service": [
+    {
+      "id": "did:web:sirraya.org:actors/sfa#metadata",
+      "type": "VSCActorMetadata",
+      "serviceEndpoint": {
+        "name": "Singapore Food Agency",
+        "role": "foodSafetyAuthority",
+        "jurisdiction": "SG",
+        "license": {
+          "type": "GovernmentAuthority",
+          "number": "SFA-SG",
+          "issuingAuthority": "Republic of Singapore"
+        },
+        "domain": "sirraya.org"
+      }
+    }
+  ]
+}

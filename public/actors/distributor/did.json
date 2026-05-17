@@ -1,0 +1,40 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:web:sirraya.org:actors/distributor",
+  "controller": "did:web:sirraya.org:actors/distributor",
+  "verificationMethod": [
+    {
+      "id": "did:web:sirraya.org:actors/distributor#key-1",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:web:sirraya.org:actors/distributor",
+      "publicKeyMultibase": "zed017e99c4213cf3f1a3dacd7327e5322c33b3d5286e796f5853bca4e326bd46a52e"
+    }
+  ],
+  "assertionMethod": [
+    "did:web:sirraya.org:actors/distributor#key-1"
+  ],
+  "authentication": [
+    "did:web:sirraya.org:actors/distributor#key-1"
+  ],
+  "service": [
+    {
+      "id": "did:web:sirraya.org:actors/distributor#metadata",
+      "type": "VSCActorMetadata",
+      "serviceEndpoint": {
+        "name": "FreshLogistics Singapore Pte Ltd",
+        "role": "distributor",
+        "jurisdiction": "SG",
+        "license": {
+          "type": "FoodBusinessOperator",
+          "number": "FBO-SG-2024-001",
+          "issuingAuthority": "Singapore Food Agency",
+          "validUntil": "2027-12-31"
+        },
+        "domain": "sirraya.org"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1"
+  ],
+  "id": "did:web:sirraya.org:actors/shipping",
+  "controller": "did:web:sirraya.org:actors/shipping",
+  "verificationMethod": [
+    {
+      "id": "did:web:sirraya.org:actors/shipping#key-1",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:web:sirraya.org:actors/shipping",
+      "publicKeyMultibase": "zed0174d1d789ac7b07a7ef1f7b68ea9cfcebf54314dd0c4b082536a0de2d968c0ebd"
+    }
+  ],
+  "assertionMethod": [
+    "did:web:sirraya.org:actors/shipping#key-1"
+  ],
+  "authentication": [
+    "did:web:sirraya.org:actors/shipping#key-1"
+  ],
+  "service": [
+    {
+      "id": "did:web:sirraya.org:actors/shipping#metadata",
+      "type": "VSCActorMetadata",
+      "serviceEndpoint": {
+        "name": "MSC Mediterranean Shipping Company",
+        "role": "shippingLine",
+        "jurisdiction": "HIGH_SEAS",
+        "license": {},
+        "domain": "sirraya.org"
+      }
+    }
+  ]
+}

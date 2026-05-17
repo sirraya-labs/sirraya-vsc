@@ -1,0 +1,1298 @@
+{
+  "chainId": "urn:uuid:chain-terra-to-table-20260517",
+  "domain": "sirraya.org",
+  "linearSeals": [
+    {
+      "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://sirraya.org/contexts/vsc-v1.jsonld"
+      ],
+      "type": "VSC-SEAL",
+      "id": "urn:uuid:5693ccba-a77d-4e20-afdf-78b53ae47969",
+      "sealVersion": "1.0",
+      "sealTimestamp": "2026-05-17T16:23:36.119693+00:00",
+      "eventVector": {
+        "what": {
+          "product_identifiers": [
+            {
+              "scheme": "GTIN",
+              "value": "8001234560010",
+              "schemeAuthority": "GS1"
+            }
+          ],
+          "classifications": [
+            {
+              "scheme": "HS",
+              "code": "0702.00",
+              "description": "Tomatoes, fresh or chilled",
+              "schemeAuthority": "WCO"
+            }
+          ],
+          "batch_or_lot": "LOT-RUSSO-2026-05-14",
+          "quantity": 500,
+          "quantity_unit": "KG",
+          "description": "Organic Roma Tomatoes",
+          "additional": {
+            "variety": "Solanum lycopersicum var. Roma",
+            "productionMethod": "organic"
+          }
+        },
+        "when": {
+          "event_time": "2026-05-16T06:00:00+02:00",
+          "timezone": "Europe/Rome",
+          "recorded_at": "2026-05-16T06:05:00+02:00",
+          "time_precision": "minute"
+        },
+        "where": {
+          "read_point": {
+            "type": "GLN",
+            "value": "8001234560010",
+            "name": "Greenhouse 4"
+          },
+          "business_location": {
+            "type": "GLN",
+            "value": "8001234560010",
+            "name": "Azienda Agricola Russo"
+          },
+          "jurisdiction": "IT",
+          "geo_coordinates": {
+            "latitude": 37.0742,
+            "longitude": 14.2403
+          }
+        },
+        "who": {
+          "actor_did": "did:web:sirraya.org:actors/farmer",
+          "actor_role": "farmer",
+          "actor_license": {
+            "type": "OrganicCertification",
+            "number": "IT-BIO-001-2024",
+            "issuingAuthority": "ICEA",
+            "validUntil": "2027-12-31"
+          },
+          "assertion_method": "did:web:sirraya.org:actors/farmer#key-1"
+        },
+        "how": {
+          "event_type": "ObjectEvent",
+          "business_step": "harvesting",
+          "disposition": "harvested",
+          "action": "ADD"
+        }
+      },
+      "extensions": {
+        "+Dn": {
+          "+D1": {
+            "urn:vsc:vocab:food:v1": {
+              "lotCode": "LOT-RUSSO-2026-05-14",
+              "harvestDate": "2026-05-14",
+              "useByDate": "2026-06-14",
+              "speciesOrVariety": "Solanum lycopersicum var. Roma",
+              "productionMethod": "organic",
+              "countryOfOrigin": "IT"
+            }
+          }
+        }
+      },
+      "chainOfCustody": {
+        "previousSeal": null,
+        "nextSeal": "urn:uuid:ad61026d-1819-488c-a4b8-ebab829c611f",
+        "sequenceNumber": 1,
+        "chainId": "urn:uuid:chain-terra-to-table-20260517"
+      },
+      "proof": {
+        "type": "Ed25519Signature2020",
+        "created": "2026-05-17T16:23:36.128687+00:00",
+        "verification_method": "did:web:sirraya.org:actors/farmer#key-1",
+        "proof_purpose": "assertionMethod",
+        "proof_value": "2cc7e6750bb7a3940c878fd6e48fb8a8f381dadd8a9d8c005f079a369479edb343e9dd790ecaa8f4349c71e7ab687927ec5035a642d596c5455bf69832789c0b"
+      }
+    },
+    {
+      "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://sirraya.org/contexts/vsc-v1.jsonld"
+      ],
+      "type": "VSC-SEAL",
+      "id": "urn:uuid:ad61026d-1819-488c-a4b8-ebab829c611f",
+      "sealVersion": "1.0",
+      "sealTimestamp": "2026-05-17T16:23:36.129691+00:00",
+      "eventVector": {
+        "what": {
+          "product_identifiers": [
+            {
+              "scheme": "GTIN",
+              "value": "8001234560027",
+              "serialNumber": "CASE-001",
+              "schemeAuthority": "GS1"
+            },
+            {
+              "scheme": "SSCC",
+              "value": "380012345600000028",
+              "schemeAuthority": "GS1"
+            }
+          ],
+          "classifications": [
+            {
+              "scheme": "HS",
+              "code": "0702.00",
+              "schemeAuthority": "WCO"
+            }
+          ],
+          "batch_or_lot": "LOT-RUSSO-2026-05-14",
+          "quantity": 500,
+          "quantity_unit": "KG",
+          "description": "Organic Roma Tomatoes — Packed 50×10KG",
+          "additional": {}
+        },
+        "when": {
+          "event_time": "2026-05-16T10:00:00+02:00",
+          "timezone": "Europe/Rome",
+          "recorded_at": "2026-05-16T10:10:00+02:00",
+          "time_precision": "millisecond"
+        },
+        "where": {
+          "read_point": {
+            "type": "GLN",
+            "value": "8001234560027",
+            "name": "Packing Line 1"
+          },
+          "business_location": {
+            "type": "GLN",
+            "value": "8001234560027",
+            "name": "Cooperativa Catania"
+          },
+          "jurisdiction": "IT",
+          "geo_coordinates": {
+            "latitude": 37.5023,
+            "longitude": 15.0873
+          }
+        },
+        "who": {
+          "actor_did": "did:web:sirraya.org:actors/packer",
+          "actor_role": "packer",
+          "actor_license": {
+            "type": "FoodBusinessOperator",
+            "number": "FBO-IT-CAT-001",
+            "issuingAuthority": "Italian Ministry of Health"
+          },
+          "assertion_method": "did:web:sirraya.org:actors/packer#key-1"
+        },
+        "how": {
+          "event_type": "AggregationEvent",
+          "business_step": "packing",
+          "disposition": "in_transit",
+          "action": "ADD"
+        }
+      },
+      "extensions": {
+        "+Dn": {
+          "+D3": {
+            "urn:vsc:vocab:coldchain:v1": {
+              "storageTemperature": 8.0,
+              "preCoolingComplete": true,
+              "preCoolingTemperature": 4.2
+            }
+          }
+        }
+      },
+      "chainOfCustody": {
+        "previousSeal": "urn:uuid:5693ccba-a77d-4e20-afdf-78b53ae47969",
+        "nextSeal": "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da",
+        "sequenceNumber": 2,
+        "chainId": "urn:uuid:chain-terra-to-table-20260517"
+      },
+      "proof": {
+        "type": "Ed25519Signature2020",
+        "created": "2026-05-17T16:23:36.131684+00:00",
+        "verification_method": "did:web:sirraya.org:actors/packer#key-1",
+        "proof_purpose": "assertionMethod",
+        "proof_value": "160dfa7a2b41f81fbe127167a1ba6e9c63160137639985a9538ed1f9abc7e3ba1155c762d534113eca11503040607ea7d2992836054308ee0a2c0d5fe7818b09"
+      }
+    },
+    {
+      "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://sirraya.org/contexts/vsc-v1.jsonld"
+      ],
+      "type": "VSC-SEAL",
+      "id": "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da",
+      "sealVersion": "1.0",
+      "sealTimestamp": "2026-05-17T16:23:36.131684+00:00",
+      "eventVector": {
+        "what": {
+          "product_identifiers": [
+            {
+              "scheme": "SSCC",
+              "value": "380012345600000028",
+              "schemeAuthority": "GS1"
+            }
+          ],
+          "classifications": [
+            {
+              "scheme": "HS",
+              "code": "0702.00",
+              "schemeAuthority": "WCO"
+            },
+            {
+              "scheme": "TARIC",
+              "code": "0702000000",
+              "schemeAuthority": "EU"
+            }
+          ],
+          "batch_or_lot": "LOT-RUSSO-2026-05-14",
+          "quantity": 500,
+          "quantity_unit": "KG",
+          "additional": {}
+        },
+        "when": {
+          "event_time": "2026-05-17T09:00:00+02:00",
+          "timezone": "Europe/Rome",
+          "recorded_at": "2026-05-17T09:15:00+02:00",
+          "time_precision": "millisecond"
+        },
+        "where": {
+          "read_point": {
+            "type": "UNLOCODE",
+            "value": "ITCTA",
+            "name": "Port of Catania"
+          },
+          "business_location": {
+            "type": "GLN",
+            "value": "8001234560034",
+            "name": "Dogana di Catania"
+          },
+          "jurisdiction": "IT",
+          "geo_coordinates": {
+            "latitude": 37.4917,
+            "longitude": 15.0976
+          }
+        },
+        "who": {
+          "actor_did": "did:web:sirraya.org:actors/customs-it",
+          "actor_role": "customsAuthority",
+          "actor_license": {
+            "type": "GovernmentAuthority",
+            "number": "IT-CUSTOMS-AGENCY",
+            "issuingAuthority": "Republic of Italy"
+          },
+          "assertion_method": "did:web:sirraya.org:actors/customs-it#key-1"
+        },
+        "how": {
+          "event_type": "ObjectEvent",
+          "business_step": "export_declaration",
+          "disposition": "cleared_for_export",
+          "action": "OBSERVE"
+        }
+      },
+      "extensions": {
+        "+Dn": {
+          "+D4": {
+            "urn:vsc:vocab:customs:v1": {
+              "declarationType": "EXPORT",
+              "declarationNumber": "IT-EX-2026-001234",
+              "customsOffice": "ITCTA001",
+              "customsStatus": "RELEASED",
+              "exportCountry": "IT",
+              "destinationCountry": "SG",
+              "phytosanitaryCertificate": "IT-PHYTO-2026-009876",
+              "invoiceValue": {
+                "amount": 2500.0,
+                "currency": "EUR"
+              }
+            }
+          }
+        }
+      },
+      "chainOfCustody": {
+        "previousSeal": "urn:uuid:ad61026d-1819-488c-a4b8-ebab829c611f",
+        "nextSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+        "sequenceNumber": 3,
+        "chainId": "urn:uuid:chain-terra-to-table-20260517"
+      },
+      "proof": {
+        "type": "Ed25519Signature2020",
+        "created": "2026-05-17T16:23:36.132687+00:00",
+        "verification_method": "did:web:sirraya.org:actors/customs-it#key-1",
+        "proof_purpose": "assertionMethod",
+        "proof_value": "8ed2100c6c2f134cc0ab8a62a9829b2ab4721c07903289a31b8a4c8b6176c6aaf39632dd2c4e17285cde81104d7f893c985b8f545a3b2b770db739254363bf07"
+      }
+    },
+    {
+      "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://sirraya.org/contexts/vsc-v1.jsonld"
+      ],
+      "type": "VSC-SEAL",
+      "id": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+      "sealVersion": "1.0",
+      "sealTimestamp": "2026-05-17T16:23:36.132687+00:00",
+      "eventVector": {
+        "what": {
+          "product_identifiers": [
+            {
+              "scheme": "SSCC",
+              "value": "380012345600000028",
+              "schemeAuthority": "GS1"
+            },
+            {
+              "scheme": "ContainerID",
+              "value": "MSCU1234567",
+              "schemeAuthority": "BIC"
+            }
+          ],
+          "classifications": [
+            {
+              "scheme": "HS",
+              "code": "0702.00",
+              "schemeAuthority": "WCO"
+            }
+          ],
+          "batch_or_lot": "LOT-RUSSO-2026-05-14",
+          "quantity": 500,
+          "quantity_unit": "KG",
+          "additional": {}
+        },
+        "when": {
+          "event_time": "2026-05-17T14:00:00+02:00",
+          "timezone": "Europe/Rome",
+          "recorded_at": "2026-05-17T14:05:00+02:00",
+          "time_precision": "millisecond"
+        },
+        "where": {
+          "read_point": {
+            "type": "UNLOCODE",
+            "value": "ITCTA",
+            "name": "Port of Catania, Berth 3"
+          },
+          "business_location": {
+            "type": "GLN",
+            "value": "8001234560041",
+            "name": "MSC Mediterranean Shipping"
+          },
+          "jurisdiction": "HIGH_SEAS",
+          "geo_coordinates": {
+            "latitude": 37.4917,
+            "longitude": 15.0976
+          }
+        },
+        "who": {
+          "actor_did": "did:web:sirraya.org:actors/shipping",
+          "actor_role": "shippingLine",
+          "actor_license": {},
+          "assertion_method": "did:web:sirraya.org:actors/shipping#key-1"
+        },
+        "how": {
+          "event_type": "ObjectEvent",
+          "business_step": "loading",
+          "disposition": "in_transit",
+          "action": "OBSERVE"
+        }
+      },
+      "extensions": {
+        "+Dn": {
+          "+D5": {
+            "urn:vsc:vocab:logistics:v1": {
+              "transportMode": "MARITIME",
+              "vesselName": "MSC Sinfonia",
+              "voyageNumber": "SINF-2026-05-001",
+              "billOfLadingNumber": "MSC-BOL-2026-009999",
+              "containerNumber": "MSCU1234567",
+              "containerType": "REEFER",
+              "estimatedDeparture": "2026-05-17T20:00:00+02:00",
+              "estimatedArrival": "2026-06-02T08:00:00+08:00",
+              "portOfLoading": "ITCTA",
+              "portOfDischarge": "SGSIN"
+            }
+          }
+        }
+      },
+      "chainOfCustody": {
+        "previousSeal": "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da",
+        "nextSeal": "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a",
+        "sequenceNumber": 4,
+        "chainId": "urn:uuid:chain-terra-to-table-20260517"
+      },
+      "proof": {
+        "type": "Ed25519Signature2020",
+        "created": "2026-05-17T16:23:36.134695+00:00",
+        "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
+        "proof_purpose": "assertionMethod",
+        "proof_value": "386fa0dca6c1b5542dd8a10efc07364a82620724f72b6391762d04709cd10c28ca6acfe7bddbaafca8890c052ef8b604281dd59a680b5de4df5ed51ed8f00309"
+      }
+    },
+    {
+      "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://sirraya.org/contexts/vsc-v1.jsonld"
+      ],
+      "type": "VSC-SEAL",
+      "id": "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a",
+      "sealVersion": "1.0",
+      "sealTimestamp": "2026-05-17T16:23:36.141693+00:00",
+      "eventVector": {
+        "what": {
+          "product_identifiers": [
+            {
+              "scheme": "SSCC",
+              "value": "380012345600000028",
+              "schemeAuthority": "GS1"
+            }
+          ],
+          "classifications": [
+            {
+              "scheme": "HS",
+              "code": "0702.00",
+              "schemeAuthority": "WCO"
+            },
+            {
+              "scheme": "ASEAN_HS",
+              "code": "0702.00.00",
+              "schemeAuthority": "ASEAN"
+            }
+          ],
+          "batch_or_lot": "LOT-RUSSO-2026-05-14",
+          "quantity": 500,
+          "quantity_unit": "KG",
+          "additional": {}
+        },
+        "when": {
+          "event_time": "2026-06-02T09:00:00+08:00",
+          "timezone": "Asia/Singapore",
+          "recorded_at": "2026-06-02T09:30:00+08:00",
+          "time_precision": "millisecond"
+        },
+        "where": {
+          "read_point": {
+            "type": "UNLOCODE",
+            "value": "SGSIN",
+            "name": "Port of Singapore"
+          },
+          "business_location": {
+            "type": "GLN",
+            "value": "8001234560058",
+            "name": "Singapore Customs"
+          },
+          "jurisdiction": "SG",
+          "geo_coordinates": {
+            "latitude": 1.2641,
+            "longitude": 103.8417
+          }
+        },
+        "who": {
+          "actor_did": "did:web:sirraya.org:actors/customs-sg",
+          "actor_role": "customsAuthority",
+          "actor_license": {
+            "type": "GovernmentAuthority",
+            "number": "SG-CUSTOMS",
+            "issuingAuthority": "Republic of Singapore"
+          },
+          "assertion_method": "did:web:sirraya.org:actors/customs-sg#key-1"
+        },
+        "how": {
+          "event_type": "ObjectEvent",
+          "business_step": "import_declaration",
+          "disposition": "customs_cleared",
+          "action": "OBSERVE"
+        }
+      },
+      "extensions": {
+        "+Dn": {
+          "+D4": {
+            "urn:vsc:vocab:customs:v1": {
+              "declarationType": "IMPORT",
+              "declarationNumber": "SG-IM-2026-005678",
+              "customsOffice": "SGSIN001",
+              "customsStatus": "RELEASED",
+              "dutyPaid": {
+                "amount": 0.0,
+                "currency": "SGD"
+              },
+              "preferentialOrigin": "EU",
+              "preferenceClaimed": "EUSFTA"
+            }
+          }
+        }
+      },
+      "chainOfCustody": {
+        "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+        "nextSeal": "urn:uuid:7777c49d-004b-40d0-8ae1-996cc90bf66f",
+        "sequenceNumber": 5,
+        "chainId": "urn:uuid:chain-terra-to-table-20260517"
+      },
+      "proof": {
+        "type": "Ed25519Signature2020",
+        "created": "2026-05-17T16:23:36.142694+00:00",
+        "verification_method": "did:web:sirraya.org:actors/customs-sg#key-1",
+        "proof_purpose": "assertionMethod",
+        "proof_value": "3724a15f682b11e1a6fdf41c8cca764e8e6baa59e9627f1b12fda431d5ed3ce7dfbba5bbeba332e67b6ee46679494da5d98e35e8e3eabf843e6103153f458c0d"
+      }
+    },
+    {
+      "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://sirraya.org/contexts/vsc-v1.jsonld"
+      ],
+      "type": "VSC-SEAL",
+      "id": "urn:uuid:7777c49d-004b-40d0-8ae1-996cc90bf66f",
+      "sealVersion": "1.0",
+      "sealTimestamp": "2026-05-17T16:23:36.143697+00:00",
+      "eventVector": {
+        "what": {
+          "product_identifiers": [
+            {
+              "scheme": "SSCC",
+              "value": "380012345600000028",
+              "schemeAuthority": "GS1"
+            },
+            {
+              "scheme": "GTIN",
+              "value": "8001234560027",
+              "serialNumber": "CASE-001",
+              "schemeAuthority": "GS1"
+            }
+          ],
+          "classifications": [
+            {
+              "scheme": "HS",
+              "code": "0702.00",
+              "schemeAuthority": "WCO"
+            }
+          ],
+          "batch_or_lot": "LOT-RUSSO-2026-05-14",
+          "quantity": 500,
+          "quantity_unit": "KG",
+          "description": "Organic Roma Tomatoes — Cold Chain Verified",
+          "additional": {}
+        },
+        "when": {
+          "event_time": "2026-06-02T14:00:00+08:00",
+          "timezone": "Asia/Singapore",
+          "recorded_at": "2026-06-02T14:10:00+08:00",
+          "time_precision": "millisecond"
+        },
+        "where": {
+          "read_point": {
+            "type": "GLN",
+            "value": "8001234560065",
+            "name": "Cold Chain Receiving Bay"
+          },
+          "business_location": {
+            "type": "GLN",
+            "value": "8001234560065",
+            "name": "FreshLogistics Singapore"
+          },
+          "jurisdiction": "SG",
+          "geo_coordinates": {
+            "latitude": 1.3521,
+            "longitude": 103.8198
+          }
+        },
+        "who": {
+          "actor_did": "did:web:sirraya.org:actors/distributor",
+          "actor_role": "distributor",
+          "actor_license": {
+            "type": "FoodBusinessOperator",
+            "number": "FBO-SG-2024-001",
+            "issuingAuthority": "Singapore Food Agency",
+            "validUntil": "2027-12-31"
+          },
+          "assertion_method": "did:web:sirraya.org:actors/distributor#key-1"
+        },
+        "how": {
+          "event_type": "ObjectEvent",
+          "business_step": "receiving",
+          "disposition": "verified",
+          "action": "OBSERVE"
+        }
+      },
+      "extensions": {
+        "+Dn": {
+          "+D3": {
+            "urn:vsc:vocab:coldchain:v1": {
+              "temperatureRange": {
+                "min": 3.7,
+                "max": 4.2
+              },
+              "temperatureCompliant": true,
+              "coldChainIntegrity": "MAINTAINED",
+              "meanKineticTemperature": 3.95
+            }
+          }
+        }
+      },
+      "chainOfCustody": {
+        "previousSeal": "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a",
+        "nextSeal": "urn:uuid:584b64e2-cec4-417c-a4ad-f3084b89e9ca",
+        "sequenceNumber": 6,
+        "chainId": "urn:uuid:chain-terra-to-table-20260517"
+      },
+      "proof": {
+        "type": "Ed25519Signature2020",
+        "created": "2026-05-17T16:23:36.146692+00:00",
+        "verification_method": "did:web:sirraya.org:actors/distributor#key-1",
+        "proof_purpose": "assertionMethod",
+        "proof_value": "7097948cd87e77bd06571887960b9dea3b0093aae1f73a40e032d8f3a0b51279f260623d74af2753afb0d66c2735b956dfac557c92bb3579645c11e773107603"
+      }
+    },
+    {
+      "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://sirraya.org/contexts/vsc-v1.jsonld"
+      ],
+      "type": "VSC-SEAL",
+      "id": "urn:uuid:584b64e2-cec4-417c-a4ad-f3084b89e9ca",
+      "sealVersion": "1.0",
+      "sealTimestamp": "2026-05-17T16:23:36.146692+00:00",
+      "eventVector": {
+        "what": {
+          "product_identifiers": [
+            {
+              "scheme": "GTIN",
+              "value": "8001234560027",
+              "serialNumber": "CASE-001",
+              "schemeAuthority": "GS1"
+            }
+          ],
+          "classifications": [
+            {
+              "scheme": "HS",
+              "code": "0702.00",
+              "schemeAuthority": "WCO"
+            }
+          ],
+          "batch_or_lot": "LOT-RUSSO-2026-05-14",
+          "quantity": 10,
+          "quantity_unit": "KG",
+          "description": "Organic Roma Tomatoes — Ready to Serve",
+          "additional": {}
+        },
+        "when": {
+          "event_time": "2026-06-03T08:00:00+08:00",
+          "timezone": "Asia/Singapore",
+          "recorded_at": "2026-06-03T08:05:00+08:00",
+          "time_precision": "millisecond"
+        },
+        "where": {
+          "read_point": {
+            "type": "GLN",
+            "value": "8001234560072",
+            "name": "Receiving Door"
+          },
+          "business_location": {
+            "type": "GLN",
+            "value": "8001234560072",
+            "name": "Casa Nostra Ristorante"
+          },
+          "jurisdiction": "SG",
+          "geo_coordinates": {
+            "latitude": 1.3047,
+            "longitude": 103.8318
+          }
+        },
+        "who": {
+          "actor_did": "did:web:sirraya.org:actors/restaurant",
+          "actor_role": "restaurant",
+          "actor_license": {
+            "type": "FoodBusinessOperator",
+            "number": "FBO-SG-2024-002",
+            "issuingAuthority": "Singapore Food Agency",
+            "validUntil": "2027-12-31"
+          },
+          "assertion_method": "did:web:sirraya.org:actors/restaurant#key-1"
+        },
+        "how": {
+          "event_type": "ObjectEvent",
+          "business_step": "receiving",
+          "disposition": "consumed",
+          "action": "OBSERVE"
+        }
+      },
+      "extensions": {
+        "+Dn": {
+          "+D1": {
+            "urn:vsc:vocab:food:v1": {
+              "useByDate": "2026-06-14",
+              "shelfLifeRemainingDays": 11,
+              "qualityCheck": {
+                "visualInspection": "PASSED",
+                "temperatureAtReceipt": 4.0,
+                "firmnessCheck": "PASSED"
+              }
+            }
+          },
+          "+D8": {
+            "urn:vsc:vocab:sustainability:v1": {
+              "totalFoodKilometers": 9872,
+              "estimatedCarbonFootprintKgCO2e": 245.3,
+              "packagingRecyclable": true
+            }
+          }
+        }
+      },
+      "chainOfCustody": {
+        "previousSeal": "urn:uuid:7777c49d-004b-40d0-8ae1-996cc90bf66f",
+        "nextSeal": null,
+        "sequenceNumber": 7,
+        "chainId": "urn:uuid:chain-terra-to-table-20260517"
+      },
+      "proof": {
+        "type": "Ed25519Signature2020",
+        "created": "2026-05-17T16:23:36.148691+00:00",
+        "verification_method": "did:web:sirraya.org:actors/restaurant#key-1",
+        "proof_purpose": "assertionMethod",
+        "proof_value": "73a44a07f2a9845351f3dac50f638c640ea94498e45891422b197e3fb1dc1ad860cff0a793f1f8bc2c1906feeeae90bc182bf0f727c2a48ee7fb9cfdd625b70e"
+      }
+    }
+  ],
+  "dagBranches": {
+    "urn:uuid:5693ccba-a77d-4e20-afdf-78b53ae47969": [
+      {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://sirraya.org/contexts/vsc-v1.jsonld"
+        ],
+        "type": "VSC-SEAL",
+        "id": "urn:uuid:b8013d9c-1ed2-45a3-9234-49147e60dfa8",
+        "sealVersion": "1.0",
+        "sealTimestamp": "2026-05-17T16:23:36.128687+00:00",
+        "eventVector": {
+          "what": {
+            "product_identifiers": [],
+            "classifications": [],
+            "description": "Organic Certification Attestation",
+            "additional": {}
+          },
+          "when": {
+            "event_time": "2026-05-16T10:00:00+02:00",
+            "timezone": "Europe/Rome",
+            "recorded_at": "2026-05-16T10:05:00+02:00",
+            "time_precision": "millisecond"
+          },
+          "where": {
+            "read_point": {},
+            "business_location": {},
+            "jurisdiction": "IT",
+            "geo_coordinates": {}
+          },
+          "who": {
+            "actor_did": "did:web:sirraya.org:actors/icea",
+            "actor_role": "certificationBody",
+            "actor_license": {},
+            "assertion_method": "did:web:sirraya.org:actors/icea#key-1"
+          },
+          "how": {
+            "event_type": "AssertionEvent",
+            "business_step": "certification_attestation",
+            "disposition": "certified_organic",
+            "action": "OBSERVE"
+          }
+        },
+        "extensions": {
+          "+Dn": {
+            "+D2": {
+              "urn:vsc:vocab:organic:v1": {
+                "certificationBody": "ICEA",
+                "certificateNumber": "IT-BIO-001-2024",
+                "standard": "EU Organic (Reg. 2018/848)",
+                "validUntil": "2027-12-31",
+                "certificateStatus": "ACTIVE"
+              }
+            }
+          }
+        },
+        "chainOfCustody": {
+          "previousSeal": "urn:uuid:5693ccba-a77d-4e20-afdf-78b53ae47969",
+          "nextSeal": null,
+          "sequenceNumber": 0,
+          "chainId": "urn:uuid:chain-terra-to-table-20260517"
+        },
+        "proof": {
+          "type": "Ed25519Signature2020",
+          "created": "2026-05-17T16:23:36.129691+00:00",
+          "verification_method": "did:web:sirraya.org:actors/icea#key-1",
+          "proof_purpose": "assertionMethod",
+          "proof_value": "e8176490ae12ca7884120941fa9b595e424abeee00eaf1b3d06e5da2e8a5c78258bb34a6f1f3809e14456d4c23a298d47e2a0d47c1edfe5afee19c0a9dd86f09"
+        }
+      }
+    ],
+    "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da": [
+      {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://sirraya.org/contexts/vsc-v1.jsonld"
+        ],
+        "type": "VSC-SEAL",
+        "id": "urn:uuid:53ae4eea-6474-43dd-b054-d56a0c4bf56b",
+        "sealVersion": "1.0",
+        "sealTimestamp": "2026-05-17T16:23:36.132687+00:00",
+        "eventVector": {
+          "what": {
+            "product_identifiers": [],
+            "classifications": [],
+            "description": "EU Phytosanitary Certificate",
+            "additional": {}
+          },
+          "when": {
+            "event_time": "2026-05-17T08:00:00+02:00",
+            "timezone": "Europe/Rome",
+            "recorded_at": "2026-05-17T08:30:00+02:00",
+            "time_precision": "millisecond"
+          },
+          "where": {
+            "read_point": {},
+            "business_location": {},
+            "jurisdiction": "IT",
+            "geo_coordinates": {}
+          },
+          "who": {
+            "actor_did": "did:web:sirraya.org:actors/phyto",
+            "actor_role": "phytosanitaryAuthority",
+            "actor_license": {},
+            "assertion_method": "did:web:sirraya.org:actors/phyto#key-1"
+          },
+          "how": {
+            "event_type": "AssertionEvent",
+            "business_step": "phytosanitary_inspection",
+            "disposition": "pest_free_certified",
+            "action": "OBSERVE"
+          }
+        },
+        "extensions": {
+          "+Dn": {
+            "+D4": {
+              "urn:vsc:vocab:customs:v1": {
+                "phytosanitaryCertificate": "IT-PHYTO-2026-009876",
+                "status": "ISSUED"
+              }
+            }
+          }
+        },
+        "chainOfCustody": {
+          "previousSeal": "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da",
+          "nextSeal": null,
+          "sequenceNumber": 0,
+          "chainId": "urn:uuid:chain-terra-to-table-20260517"
+        },
+        "proof": {
+          "type": "Ed25519Signature2020",
+          "created": "2026-05-17T16:23:36.132687+00:00",
+          "verification_method": "did:web:sirraya.org:actors/phyto#key-1",
+          "proof_purpose": "assertionMethod",
+          "proof_value": "8048b3c8f20e437a7993f71746049fbf32cbc056e7adb3e8d349e0cd81f04261c819da8cb0131f2975b8e1ebd3f59dffeae89a3f244d58e7830f6072b9937a06"
+        }
+      }
+    ],
+    "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc": [
+      {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://sirraya.org/contexts/vsc-v1.jsonld"
+        ],
+        "type": "VSC-SEAL",
+        "id": "urn:uuid:473710d2-c5b2-4603-b2a5-7bd0f1bf0873",
+        "sealVersion": "1.0",
+        "sealTimestamp": "2026-05-17T16:23:36.135692+00:00",
+        "eventVector": {
+          "what": {
+            "product_identifiers": [],
+            "classifications": [],
+            "description": "Temperature: 4.0°C at Port of Catania",
+            "additional": {}
+          },
+          "when": {
+            "event_time": "2026-05-17T14:00:00+02:00",
+            "timezone": "UTC",
+            "recorded_at": "2026-05-17T14:00:00+02:00",
+            "time_precision": "millisecond"
+          },
+          "where": {
+            "read_point": {},
+            "business_location": {},
+            "jurisdiction": "HIGH_SEAS",
+            "geo_coordinates": {}
+          },
+          "who": {
+            "actor_did": "did:web:sirraya.org:actors/shipping",
+            "actor_role": "shippingLine",
+            "actor_license": {},
+            "assertion_method": "did:web:sirraya.org:actors/shipping#key-1"
+          },
+          "how": {
+            "event_type": "SensorEvent",
+            "business_step": "temperature_monitoring",
+            "disposition": "temperature_observed",
+            "action": "OBSERVE"
+          }
+        },
+        "extensions": {
+          "+Dn": {
+            "+D3": {
+              "urn:vsc:vocab:coldchain:v1": {
+                "temperature": 4.0,
+                "temperatureUnit": "celsius",
+                "location": "Port of Catania",
+                "dataLoggerId": "LOG-MSC-2026-001"
+              }
+            }
+          }
+        },
+        "chainOfCustody": {
+          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "nextSeal": null,
+          "sequenceNumber": 0,
+          "chainId": "urn:uuid:chain-terra-to-table-20260517"
+        },
+        "proof": {
+          "type": "Ed25519Signature2020",
+          "created": "2026-05-17T16:23:36.136689+00:00",
+          "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
+          "proof_purpose": "assertionMethod",
+          "proof_value": "df1c58e74eef95d451f1ffe47f4195e17e19828ca0eef42e519a8ab0bb1d0b52fd8f2c550893d09b19da55faa95506cec124f52f20a0cdce00903bae9aa9ae02"
+        }
+      },
+      {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://sirraya.org/contexts/vsc-v1.jsonld"
+        ],
+        "type": "VSC-SEAL",
+        "id": "urn:uuid:b8ceee89-20e9-4db0-96f2-7ccc4cacb5de",
+        "sealVersion": "1.0",
+        "sealTimestamp": "2026-05-17T16:23:36.136689+00:00",
+        "eventVector": {
+          "what": {
+            "product_identifiers": [],
+            "classifications": [],
+            "description": "Temperature: 3.8°C at Mediterranean Sea",
+            "additional": {}
+          },
+          "when": {
+            "event_time": "2026-05-20T08:00:00+02:00",
+            "timezone": "UTC",
+            "recorded_at": "2026-05-20T08:00:00+02:00",
+            "time_precision": "millisecond"
+          },
+          "where": {
+            "read_point": {},
+            "business_location": {},
+            "jurisdiction": "HIGH_SEAS",
+            "geo_coordinates": {}
+          },
+          "who": {
+            "actor_did": "did:web:sirraya.org:actors/shipping",
+            "actor_role": "shippingLine",
+            "actor_license": {},
+            "assertion_method": "did:web:sirraya.org:actors/shipping#key-1"
+          },
+          "how": {
+            "event_type": "SensorEvent",
+            "business_step": "temperature_monitoring",
+            "disposition": "temperature_observed",
+            "action": "OBSERVE"
+          }
+        },
+        "extensions": {
+          "+Dn": {
+            "+D3": {
+              "urn:vsc:vocab:coldchain:v1": {
+                "temperature": 3.8,
+                "temperatureUnit": "celsius",
+                "location": "Mediterranean Sea",
+                "dataLoggerId": "LOG-MSC-2026-001"
+              }
+            }
+          }
+        },
+        "chainOfCustody": {
+          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "nextSeal": null,
+          "sequenceNumber": 0,
+          "chainId": "urn:uuid:chain-terra-to-table-20260517"
+        },
+        "proof": {
+          "type": "Ed25519Signature2020",
+          "created": "2026-05-17T16:23:36.137698+00:00",
+          "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
+          "proof_purpose": "assertionMethod",
+          "proof_value": "6a2228066e0b6d4e59e354a226b109615a617705772b913ca43f3b6c35562e1a9703174594646bc5a74be301f3474420a9ce279b5281a93407fe05313d65fc06"
+        }
+      },
+      {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://sirraya.org/contexts/vsc-v1.jsonld"
+        ],
+        "type": "VSC-SEAL",
+        "id": "urn:uuid:549bfc11-eb6a-407d-82c7-ce9b19a557fc",
+        "sealVersion": "1.0",
+        "sealTimestamp": "2026-05-17T16:23:36.137698+00:00",
+        "eventVector": {
+          "what": {
+            "product_identifiers": [],
+            "classifications": [],
+            "description": "Temperature: 4.1°C at Suez Canal",
+            "additional": {}
+          },
+          "when": {
+            "event_time": "2026-05-25T12:00:00+02:00",
+            "timezone": "UTC",
+            "recorded_at": "2026-05-25T12:00:00+02:00",
+            "time_precision": "millisecond"
+          },
+          "where": {
+            "read_point": {},
+            "business_location": {},
+            "jurisdiction": "HIGH_SEAS",
+            "geo_coordinates": {}
+          },
+          "who": {
+            "actor_did": "did:web:sirraya.org:actors/shipping",
+            "actor_role": "shippingLine",
+            "actor_license": {},
+            "assertion_method": "did:web:sirraya.org:actors/shipping#key-1"
+          },
+          "how": {
+            "event_type": "SensorEvent",
+            "business_step": "temperature_monitoring",
+            "disposition": "temperature_observed",
+            "action": "OBSERVE"
+          }
+        },
+        "extensions": {
+          "+Dn": {
+            "+D3": {
+              "urn:vsc:vocab:coldchain:v1": {
+                "temperature": 4.1,
+                "temperatureUnit": "celsius",
+                "location": "Suez Canal",
+                "dataLoggerId": "LOG-MSC-2026-001"
+              }
+            }
+          }
+        },
+        "chainOfCustody": {
+          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "nextSeal": null,
+          "sequenceNumber": 0,
+          "chainId": "urn:uuid:chain-terra-to-table-20260517"
+        },
+        "proof": {
+          "type": "Ed25519Signature2020",
+          "created": "2026-05-17T16:23:36.140690+00:00",
+          "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
+          "proof_purpose": "assertionMethod",
+          "proof_value": "78b5c64ba8ca4140f00c567394905e7e0f140acc1edb920d69e5dcc9fe4307fca323b4162dca7638a887957c94d87db5a044f00da11b8b47ba60b64c50fcc60b"
+        }
+      },
+      {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://sirraya.org/contexts/vsc-v1.jsonld"
+        ],
+        "type": "VSC-SEAL",
+        "id": "urn:uuid:ae32d0a2-ca77-4a02-9cf4-19dfc6677254",
+        "sealVersion": "1.0",
+        "sealTimestamp": "2026-05-17T16:23:36.140690+00:00",
+        "eventVector": {
+          "what": {
+            "product_identifiers": [],
+            "classifications": [],
+            "description": "Temperature: 3.9°C at Indian Ocean",
+            "additional": {}
+          },
+          "when": {
+            "event_time": "2026-05-30T16:00:00+02:00",
+            "timezone": "UTC",
+            "recorded_at": "2026-05-30T16:00:00+02:00",
+            "time_precision": "millisecond"
+          },
+          "where": {
+            "read_point": {},
+            "business_location": {},
+            "jurisdiction": "HIGH_SEAS",
+            "geo_coordinates": {}
+          },
+          "who": {
+            "actor_did": "did:web:sirraya.org:actors/shipping",
+            "actor_role": "shippingLine",
+            "actor_license": {},
+            "assertion_method": "did:web:sirraya.org:actors/shipping#key-1"
+          },
+          "how": {
+            "event_type": "SensorEvent",
+            "business_step": "temperature_monitoring",
+            "disposition": "temperature_observed",
+            "action": "OBSERVE"
+          }
+        },
+        "extensions": {
+          "+Dn": {
+            "+D3": {
+              "urn:vsc:vocab:coldchain:v1": {
+                "temperature": 3.9,
+                "temperatureUnit": "celsius",
+                "location": "Indian Ocean",
+                "dataLoggerId": "LOG-MSC-2026-001"
+              }
+            }
+          }
+        },
+        "chainOfCustody": {
+          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "nextSeal": null,
+          "sequenceNumber": 0,
+          "chainId": "urn:uuid:chain-terra-to-table-20260517"
+        },
+        "proof": {
+          "type": "Ed25519Signature2020",
+          "created": "2026-05-17T16:23:36.140690+00:00",
+          "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
+          "proof_purpose": "assertionMethod",
+          "proof_value": "1a800bd75db0b68a5253f7e9fca8962ca7d3eecbccd8990fc3fe28f79e858eda86ddd6d8e5be368734790419c4e9dd6026eb4fc1a3bb665b5e4747e7dddc2d06"
+        }
+      },
+      {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://sirraya.org/contexts/vsc-v1.jsonld"
+        ],
+        "type": "VSC-SEAL",
+        "id": "urn:uuid:6ba1ea79-2708-4276-8f1b-9177978cd316",
+        "sealVersion": "1.0",
+        "sealTimestamp": "2026-05-17T16:23:36.141693+00:00",
+        "eventVector": {
+          "what": {
+            "product_identifiers": [],
+            "classifications": [],
+            "description": "Temperature: 4.2°C at Singapore Straits",
+            "additional": {}
+          },
+          "when": {
+            "event_time": "2026-06-02T08:00:00+08:00",
+            "timezone": "UTC",
+            "recorded_at": "2026-06-02T08:00:00+08:00",
+            "time_precision": "millisecond"
+          },
+          "where": {
+            "read_point": {},
+            "business_location": {},
+            "jurisdiction": "HIGH_SEAS",
+            "geo_coordinates": {}
+          },
+          "who": {
+            "actor_did": "did:web:sirraya.org:actors/shipping",
+            "actor_role": "shippingLine",
+            "actor_license": {},
+            "assertion_method": "did:web:sirraya.org:actors/shipping#key-1"
+          },
+          "how": {
+            "event_type": "SensorEvent",
+            "business_step": "temperature_monitoring",
+            "disposition": "temperature_observed",
+            "action": "OBSERVE"
+          }
+        },
+        "extensions": {
+          "+Dn": {
+            "+D3": {
+              "urn:vsc:vocab:coldchain:v1": {
+                "temperature": 4.2,
+                "temperatureUnit": "celsius",
+                "location": "Singapore Straits",
+                "dataLoggerId": "LOG-MSC-2026-001"
+              }
+            }
+          }
+        },
+        "chainOfCustody": {
+          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "nextSeal": null,
+          "sequenceNumber": 0,
+          "chainId": "urn:uuid:chain-terra-to-table-20260517"
+        },
+        "proof": {
+          "type": "Ed25519Signature2020",
+          "created": "2026-05-17T16:23:36.141693+00:00",
+          "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
+          "proof_purpose": "assertionMethod",
+          "proof_value": "5202276c1a8de691beea740ce043f3679b6020280f3c71e258e2060ba924393978bddc3f1edbb7bade5a3b04e616c2429c581834e607b6c5cc5b6bbeb912fd0d"
+        }
+      }
+    ],
+    "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a": [
+      {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://sirraya.org/contexts/vsc-v1.jsonld"
+        ],
+        "type": "VSC-SEAL",
+        "id": "urn:uuid:7650f3f1-6f43-4fda-8a26-96f520b863a4",
+        "sealVersion": "1.0",
+        "sealTimestamp": "2026-05-17T16:23:36.142694+00:00",
+        "eventVector": {
+          "what": {
+            "product_identifiers": [],
+            "classifications": [],
+            "description": "SFA Food Safety Inspection",
+            "additional": {}
+          },
+          "when": {
+            "event_time": "2026-06-02T11:00:00+08:00",
+            "timezone": "Asia/Singapore",
+            "recorded_at": "2026-06-02T11:30:00+08:00",
+            "time_precision": "millisecond"
+          },
+          "where": {
+            "read_point": {},
+            "business_location": {},
+            "jurisdiction": "SG",
+            "geo_coordinates": {}
+          },
+          "who": {
+            "actor_did": "did:web:sirraya.org:actors/sfa",
+            "actor_role": "foodSafetyAuthority",
+            "actor_license": {
+              "type": "GovernmentAuthority",
+              "number": "SFA-SG",
+              "issuingAuthority": "Republic of Singapore"
+            },
+            "assertion_method": "did:web:sirraya.org:actors/sfa#key-1"
+          },
+          "how": {
+            "event_type": "InspectionEvent",
+            "business_step": "food_safety_inspection",
+            "disposition": "passed_inspection",
+            "action": "OBSERVE"
+          }
+        },
+        "extensions": {
+          "+Dn": {
+            "+D6": {
+              "urn:vsc:vocab:sfa:v1": {
+                "competentAuthority": "Singapore Food Agency",
+                "importPermitNumber": "SFA-IP-2026-012345",
+                "inspectionResult": "PASSED",
+                "inspectedAt": "2026-06-02T11:00:00+08:00",
+                "labSampleTaken": false,
+                "phytosanitaryCheck": "PASSED",
+                "organicClaimVerification": "VERIFIED"
+              }
+            }
+          }
+        },
+        "chainOfCustody": {
+          "previousSeal": "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a",
+          "nextSeal": null,
+          "sequenceNumber": 0,
+          "chainId": "urn:uuid:chain-terra-to-table-20260517"
+        },
+        "proof": {
+          "type": "Ed25519Signature2020",
+          "created": "2026-05-17T16:23:36.143697+00:00",
+          "verification_method": "did:web:sirraya.org:actors/sfa#key-1",
+          "proof_purpose": "assertionMethod",
+          "proof_value": "d58c74249ff4712366d33f529d63bf5f4fe59fc20e5d4ac9a931a9026ccef9b5744e9f3b1caa9432c03aacde2dcc8dbb19fa1298b37f97a7c741c3975e006b0d"
+        }
+      }
+    ]
+  }
+}
