@@ -10,7 +10,7 @@
       "id": "did:web:sirraya.org:actors/restaurant#key-1",
       "type": "Ed25519VerificationKey2020",
       "controller": "did:web:sirraya.org:actors/restaurant",
-      "publicKeyMultibase": "zed01e3f4469e463f9b421623591a833a48cf1245fac37709b8f8c4acb292c05f4b20"
+      "publicKeyMultibase": "zed010012707adabb9c3861932bc5c657c34d7c4dda9f0c5a338f4e2d6ea39250e444"
     }
   ],
   "assertionMethod": [

@@ -10,7 +10,7 @@
       "id": "did:web:sirraya.org:actors/sfa#key-1",
       "type": "Ed25519VerificationKey2020",
       "controller": "did:web:sirraya.org:actors/sfa",
-      "publicKeyMultibase": "zed0144e4503c5d3bb607b017cdf0cfb5ad56645048effb3f411ac58ac7fb9e997b7c"
+      "publicKeyMultibase": "zed013d27ecb76a925f0256b34862a2a4acb7be087c7c47b87e09fa59be9283e7af88"
     }
   ],
   "assertionMethod": [
