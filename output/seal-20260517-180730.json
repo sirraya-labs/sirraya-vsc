@@ -1,0 +1,90 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://sirraya.org/contexts/vsc-v1.jsonld"
+  ],
+  "type": "VSC-SEAL",
+  "id": "urn:uuid:eb9d6f7b-e6ff-45cb-8370-a9f4ab53de91",
+  "sealVersion": "1.0",
+  "sealTimestamp": "2026-05-17T18:07:30.628893+00:00",
+  "eventVector": {
+    "what": {
+      "product_identifiers": [
+        {
+          "scheme": "SGTIN",
+          "value": "urn:epc:id:sgtin:8001234.00001.ABC123456789",
+          "schemeAuthority": "GS1"
+        }
+      ],
+      "quantity": 500,
+      "quantity_unit": "KGM",
+      "additional": {
+        "bizTransactions": [
+          {
+            "type": "po",
+            "bizTransaction": "PO-2026-001"
+          }
+        ]
+      }
+    },
+    "when": {
+      "event_time": "2026-05-16T06:00:00+02:00",
+      "timezone": "+02:00",
+      "recorded_at": "2026-05-17T18:07:30.628893+00:00",
+      "time_precision": "millisecond"
+    },
+    "where": {
+      "read_point": {
+        "type": "GLN",
+        "id": "urn:epc:id:sgln:8001234.00001.0",
+        "name": ""
+      },
+      "business_location": {
+        "type": "GLN",
+        "id": "urn:epc:id:sgln:8001234.00001.0",
+        "name": ""
+      },
+      "jurisdiction": "SG"
+    },
+    "who": {
+      "actor_did": "did:web:sirraya.org:actors/farmer",
+      "actor_role": "farmer",
+      "actor_license": {
+        "type": "OrganicCertification",
+        "number": "IT-BIO-001-2024",
+        "issuingAuthority": "ICEA",
+        "validUntil": "2027-12-31"
+      },
+      "assertion_method": "did:web:sirraya.org:actors/farmer#key-1"
+    },
+    "how": {
+      "event_type": "ObjectEvent",
+      "action": "ADD",
+      "business_step": "commissioning",
+      "disposition": "active"
+    }
+  },
+  "extensions": {
+    "+Dn": {
+      "+D1": {
+        "urn:epcis:extensions": {
+          "harvestDate": "2026-05-14",
+          "organic": true
+        }
+      }
+    }
+  },
+  "chainOfCustody": {
+    "previousSeal": null,
+    "nextSeal": null,
+    "sequenceNumber": 1,
+    "chainId": "urn:uuid:chain-epcis-2317b6fd2e2a47b4"
+  },
+  "proof": {
+    "type": "Ed25519Signature2020",
+    "created": "2026-05-17T18:07:30.629894+00:00",
+    "verification_method": "did:web:sirraya.org:actors/farmer#key-1",
+    "proof_purpose": "assertionMethod",
+    "proof_value": "fb52c281dcbfb19fc881378f862180983e4ac6f74970231bbd2188e1435011a6b669945da1627cb7002d476d4af98fa03c35bc55fd70e475c55b6985cfb18703"
+  }
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>VSC SEAL — EPCIS→VC Mapping</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#03050a;--card:#0a0f1e;--border:#1a2240;--text:#e8ecf4;--t2:#8899bb;--t3:#556688;--g:#00d4aa;--gd:rgba(0,212,170,0.10);--y:#f0c040;--b:#4ecdc4;--p:#a29bfe;--r:#ff6b6b;--grad:linear-gradient(135deg,#00d4aa,#00a8cc)}
+        *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;min-height:100vh;padding:30px}
+        .container{max-width:1100px;margin:0 auto}
+        .header{text-align:center;padding:40px 20px}
+        .badge{display:inline-block;padding:6px 16px;border-radius:100px;background:var(--gd);border:1px solid rgba(0,212,170,0.25);color:var(--g);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+        .header h1{font-size:36px;font-weight:800;letter-spacing:-1px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+        .header .sub{font-size:13px;color:var(--t2);letter-spacing:1px}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:20px}
+        .card h2{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+        .card h2 .dot{width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 8px rgba(0,212,170,0.3)}
+        table{width:100%;border-collapse:collapse;font-size:12px}
+        th{text-align:left;padding:8px 12px;color:var(--t3);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+        td{padding:10px 12px;border-bottom:1px solid rgba(26,34,64,0.5);font-family:'JetBrains Mono',monospace;font-size:11px}
+        td.field{font-family:'Inter',system-ui,sans-serif;color:var(--t2);font-size:11px}
+        .mapped{color:var(--g)}.new{color:var(--p)}.sig{color:var(--p);font-size:9px;word-break:break-all}
+        .badge-sm{display:inline-block;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700}
+        .badge-q1{background:var(--gd);color:var(--g)}.badge-q2{background:rgba(240,192,64,0.10);color:var(--y)}
+        .badge-q3{background:rgba(78,205,196,0.10);color:var(--b)}.badge-q4{background:rgba(162,155,254,0.10);color:var(--p)}
+        .footer{text-align:center;padding:30px;color:var(--t3);font-size:11px}
+        pre{background:rgba(0,0,0,0.3);border-radius:10px;padding:16px;overflow-x:auto;font-size:11px;color:var(--t2);max-height:400px;overflow-y:auto}
+        .tabs{display:flex;gap:8px;margin-bottom:16px}
+        .tab{padding:8px 18px;border-radius:100px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--t2);transition:all 0.2s}
+        .tab.active{background:var(--gd);border-color:rgba(0,212,170,0.3);color:var(--g)}
+        .tab-content{display:none}.tab-content.active{display:block}
+        @media(max-width:700px){.header h1{font-size:24px}td{font-size:9px}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge">W3C VSC Community Group</div>
+            <h1>EPCIS → VC Mapping Result</h1>
+            <div class="sub">Lossless Transformation · sirraya.org</div>
+        </div>
+        <div class="card">
+            <h2><span class="dot"></span>Mapping Summary</h2>
+            <table>
+                <tr><th>Property</th><th>Value</th></tr>
+                <tr><td class="field">SEAL ID</td><td>urn:uuid:3e142185-ae7e-4943-954c-c0578c8d0bd5</td></tr>
+                <tr><td class="field">Chain ID</td><td>urn:uuid:chain-epcis-8f2a9bc6ac3e4f60</td></tr>
+                <tr><td class="field">Event Type</td><td>ObjectEvent</td></tr>
+                <tr><td class="field">Business Step</td><td>commissioning</td></tr>
+                <tr><td class="field">Actor</td><td style="color:var(--b)">did:web:sirraya.org:actors/farmer</td></tr>
+                <tr><td class="field">Signed</td><td>✓ Ed25519</td></tr>
+            </table>
+        </div>
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('mapped')">Mapped Fields</button>
+                <button class="tab" onclick="switchTab('extensions')">+Dn Extensions</button>
+                <button class="tab" onclick="switchTab('raw')">Raw JSON</button>
+            </div>
+            <div class="tab-content active" id="tab-mapped"><table><tr><th>Field Mapping</th><th>Value</th><th>Type</th></tr><tr><td class="field">eventType → how.event_type</td><td class="mapped">ObjectEvent</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">action → how.action</td><td class="mapped">ADD</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">bizStep → how.business_step</td><td class="mapped">commissioning</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">disposition → how.disposition</td><td class="mapped">active</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">eventTime → when.event_time</td><td class="mapped">2026-05-16T06:00:00+02:00</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">eventTimeZone → when.timezone</td><td class="mapped">+02:00</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">readPoint → where.read_point</td><td class="mapped">urn:epc:id:sgln:8001234.00001.0</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">bizLocation → where.business_location</td><td class="mapped">urn:epc:id:sgln:8001234.00001.0</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">epcList → what.product_identifiers</td><td class="mapped">1 identifier(s)</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">quantityList → what.quantity</td><td class="mapped">500 KGM</td><td><span class="badge-sm badge-q1">↔ MAPPED</span></td></tr><tr><td class="field">— → who.actor_did (NEW)</td><td class="new">did:web:sirraya.org:actors/farmer</td><td><span class="badge-sm badge-q1">+ ADDED</span></td></tr><tr><td class="field">— → who.actor_role (NEW)</td><td class="new">farmer</td><td><span class="badge-sm badge-q1">+ ADDED</span></td></tr><tr><td class="field">— → chainOfCustody (NEW)</td><td class="new">Sequence #1</td><td><span class="badge-sm badge-q1">+ ADDED</span></td></tr><tr><td class="field">— → proof (NEW)</td><td class="new">Ed25519: eda03a03534694077fde4b64f2d4cd0378235b53...</td><td><span class="badge-sm badge-q1">+ ADDED</span></td></tr></table></div>
+            <div class="tab-content" id="tab-extensions"><table><tr><th>Dimension</th><th>Vocabulary URN</th><th>Data</th></tr><tr><td>+D1</td><td style="font-size:10px;">urn:epcis:extensions</td><td style="font-size:10px;">{"harvestDate": "2026-05-14", "organic": true}</td></tr></table></div>
+            <div class="tab-content" id="tab-raw"><pre>{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://sirraya.org/contexts/vsc-v1.jsonld"
+  ],
+  "type": "VSC-SEAL",
+  "id": "urn:uuid:3e142185-ae7e-4943-954c-c0578c8d0bd5",
+  "sealVersion": "1.0",
+  "sealTimestamp": "2026-05-17T18:11:33.809424+00:00",
+  "eventVector": {
+    "what": {
+      "product_identifiers": [
+        {
+          "scheme": "SGTIN",
+          "value": "urn:epc:id:sgtin:8001234.00001.ABC123456789",
+          "schemeAuthority": "GS1"
+        }
+      ],
+      "quantity": 500,
+      "quantity_unit": "KGM",
+      "additional": {
+        "bizTransactions": [
+          {
+            "type": "po",
+            "bizTransaction": "PO-2026-001"
+          }
+        ]
+      }
+    },
+    "when": {
+      "event_time": "2026-05-16T06:00:00+02:00",
+      "timezone": "+02:00",
+      "recorded_at": "2026-05-17T18:11:33.809424+00:00",
+      "time_precision": "millisecond"
+    },
+    "where": {
+      "read_point": {
+        "type": "GLN",
+        "id": "urn:epc:id:sgln:8001234.00001.0",
+        "name": ""
+      },
+      "business_location": {
+        "type": "GLN",
+        "id": "urn:epc:id:sgln:8001234.00001.0",
+        "name": ""
+      },
+      "jurisdiction": "SG"
+    },
+    "who": {
+      "actor_did": "did:web:sirraya.org:actors/farmer",
+      "actor_role": "farmer",
+      "actor_license": {
+        "type": "OrganicCertification",
+        "number": "IT-BIO-001-2024",
+        "issuingAuthority": "ICEA",
+        "validUntil": "2027-12-31"
+      },
+      "assertion_method": "did:web:sirraya.org:actors/farmer#key-1"
+    },
+    "how": {
+      "event_type": "ObjectEvent",
+      "action": "ADD",
+      "business_step": "commissioning",
+      "disposition": "active"
+    }
+  },
+  "extensions": {
+    "+Dn": {
+      "+D1": {
+        "urn:epcis:extensions": {
+          "harvestDate": "2026-05-14",
+          "organic": true
+        }
+      }
+    }
+  },
+  "chainOfCustody": {
+    "previousSeal": null,
+    "nextSeal": null,
+    "sequenceNumber": 1,
+    "chainId": "urn:uuid:chain-epcis-8f2a9bc6ac3e4f60"
+  },
+  "proof": {
+    "type": "Ed25519Signature2020",
+    "created": "2026-05-17T18:11:33.810424+00:00",
+    "verification_method": "did:web:sirraya.org:actors/farmer#key-1",
+    "proof_purpose": "assertionMethod",
+    "proof_value": "eda03a03534694077fde4b64f2d4cd0378235b53faebb3cd8074cfabbe01940d0e1029bece1f26c1caf331320604026456f7e67e98477e5a6a14c0ec24bb6d05"
+  }
+}</pre></div>
+        </div>
+        <div class="footer">VSC Event Matrix · Vocabulary Neutral · Forkable · Royalty-Free · DLT Agnostic</div>
+    </div>
+    <script>
+        function switchTab(id) {
+            document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+            document.getElementById('tab-'+id).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
