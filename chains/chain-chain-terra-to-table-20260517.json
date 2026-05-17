@@ -8,9 +8,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:5693ccba-a77d-4e20-afdf-78b53ae47969",
+      "id": "urn:uuid:05aabda7-5fb5-4f1b-88eb-63528f49e4c9",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:23:36.119693+00:00",
+      "sealTimestamp": "2026-05-17T16:33:21.463833+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -94,16 +94,16 @@
       },
       "chainOfCustody": {
         "previousSeal": null,
-        "nextSeal": "urn:uuid:ad61026d-1819-488c-a4b8-ebab829c611f",
+        "nextSeal": "urn:uuid:1b58eb92-5a76-464e-b03d-5c1d3a6dd2da",
         "sequenceNumber": 1,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:23:36.128687+00:00",
+        "created": "2026-05-17T16:33:21.476079+00:00",
         "verification_method": "did:web:sirraya.org:actors/farmer#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "2cc7e6750bb7a3940c878fd6e48fb8a8f381dadd8a9d8c005f079a369479edb343e9dd790ecaa8f4349c71e7ab687927ec5035a642d596c5455bf69832789c0b"
+        "proof_value": "91d4e3d5bbf4c964b1c2864c1b6558cad3bccd09eb44ed7664f067616cc3dd41f6f630ece404f76a2b819bdead6b2743d3c0d5138cf228adf0702e862c3f0006"
       }
     },
     {
@@ -112,9 +112,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:ad61026d-1819-488c-a4b8-ebab829c611f",
+      "id": "urn:uuid:1b58eb92-5a76-464e-b03d-5c1d3a6dd2da",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:23:36.129691+00:00",
+      "sealTimestamp": "2026-05-17T16:33:21.477086+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -195,17 +195,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:5693ccba-a77d-4e20-afdf-78b53ae47969",
-        "nextSeal": "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da",
+        "previousSeal": "urn:uuid:05aabda7-5fb5-4f1b-88eb-63528f49e4c9",
+        "nextSeal": "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a",
         "sequenceNumber": 2,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:23:36.131684+00:00",
+        "created": "2026-05-17T16:33:21.478080+00:00",
         "verification_method": "did:web:sirraya.org:actors/packer#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "160dfa7a2b41f81fbe127167a1ba6e9c63160137639985a9538ed1f9abc7e3ba1155c762d534113eca11503040607ea7d2992836054308ee0a2c0d5fe7818b09"
+        "proof_value": "c530892884599f02a3e7f70445de97388184e77b74d18d8d5d319a75079c9c301e828dd15fa2f9d3ad1d1150b7c921c8b8884f42cd1556885082ba177ef6ed06"
       }
     },
     {
@@ -214,9 +214,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da",
+      "id": "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:23:36.131684+00:00",
+      "sealTimestamp": "2026-05-17T16:33:21.478080+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -303,17 +303,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:ad61026d-1819-488c-a4b8-ebab829c611f",
-        "nextSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+        "previousSeal": "urn:uuid:1b58eb92-5a76-464e-b03d-5c1d3a6dd2da",
+        "nextSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
         "sequenceNumber": 3,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:23:36.132687+00:00",
+        "created": "2026-05-17T16:33:21.478080+00:00",
         "verification_method": "did:web:sirraya.org:actors/customs-it#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "8ed2100c6c2f134cc0ab8a62a9829b2ab4721c07903289a31b8a4c8b6176c6aaf39632dd2c4e17285cde81104d7f893c985b8f545a3b2b770db739254363bf07"
+        "proof_value": "65d0c6c786c26eeaff3de40f84264c309b3ea5a927a28b5432c71800e25a6031b167293b02d6c112b62e5080b67fde8419acd1ea334646d9a5fbb0e52173ad0b"
       }
     },
     {
@@ -322,9 +322,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+      "id": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:23:36.132687+00:00",
+      "sealTimestamp": "2026-05-17T16:33:21.479082+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -406,17 +406,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da",
-        "nextSeal": "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a",
+        "previousSeal": "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a",
+        "nextSeal": "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e",
         "sequenceNumber": 4,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:23:36.134695+00:00",
+        "created": "2026-05-17T16:33:21.480088+00:00",
         "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "386fa0dca6c1b5542dd8a10efc07364a82620724f72b6391762d04709cd10c28ca6acfe7bddbaafca8890c052ef8b604281dd59a680b5de4df5ed51ed8f00309"
+        "proof_value": "e42b5a450a4c64a4e4a2423e625e0183a08c2ce1b2758d714de14348b76b140798e31da4511d145e6e9aff0672ee95b9f02c7b808ac3219f0b55d639dfbc2701"
       }
     },
     {
@@ -425,9 +425,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a",
+      "id": "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:23:36.141693+00:00",
+      "sealTimestamp": "2026-05-17T16:33:21.484091+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -513,17 +513,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
-        "nextSeal": "urn:uuid:7777c49d-004b-40d0-8ae1-996cc90bf66f",
+        "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
+        "nextSeal": "urn:uuid:54329001-b93c-4fac-919e-18cdb031080e",
         "sequenceNumber": 5,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:23:36.142694+00:00",
+        "created": "2026-05-17T16:33:21.484617+00:00",
         "verification_method": "did:web:sirraya.org:actors/customs-sg#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "3724a15f682b11e1a6fdf41c8cca764e8e6baa59e9627f1b12fda431d5ed3ce7dfbba5bbeba332e67b6ee46679494da5d98e35e8e3eabf843e6103153f458c0d"
+        "proof_value": "0990cb7e643698f59749a7b225424b714b0a8df08a200357fd90fafb6799c4312169735474ebe33d051fc8ed7c9e695c5e18e98bd7b96e1ac5563a21d7285804"
       }
     },
     {
@@ -532,9 +532,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:7777c49d-004b-40d0-8ae1-996cc90bf66f",
+      "id": "urn:uuid:54329001-b93c-4fac-919e-18cdb031080e",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:23:36.143697+00:00",
+      "sealTimestamp": "2026-05-17T16:33:21.485661+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -620,17 +620,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a",
-        "nextSeal": "urn:uuid:584b64e2-cec4-417c-a4ad-f3084b89e9ca",
+        "previousSeal": "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e",
+        "nextSeal": "urn:uuid:edac1aee-e355-414a-bac8-0c892770d6cf",
         "sequenceNumber": 6,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:23:36.146692+00:00",
+        "created": "2026-05-17T16:33:21.486658+00:00",
         "verification_method": "did:web:sirraya.org:actors/distributor#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "7097948cd87e77bd06571887960b9dea3b0093aae1f73a40e032d8f3a0b51279f260623d74af2753afb0d66c2735b956dfac557c92bb3579645c11e773107603"
+        "proof_value": "98783e800c96b75fc64e376994d6c7f1d28ed54acc2d5a452683f9b2838e46938cec2ae01949582b201caae897e50800313d49f978db1daa0f1dfe0a3d2ab009"
       }
     },
     {
@@ -639,9 +639,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:584b64e2-cec4-417c-a4ad-f3084b89e9ca",
+      "id": "urn:uuid:edac1aee-e355-414a-bac8-0c892770d6cf",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:23:36.146692+00:00",
+      "sealTimestamp": "2026-05-17T16:33:21.486658+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -729,31 +729,31 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:7777c49d-004b-40d0-8ae1-996cc90bf66f",
+        "previousSeal": "urn:uuid:54329001-b93c-4fac-919e-18cdb031080e",
         "nextSeal": null,
         "sequenceNumber": 7,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:23:36.148691+00:00",
+        "created": "2026-05-17T16:33:21.487647+00:00",
         "verification_method": "did:web:sirraya.org:actors/restaurant#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "73a44a07f2a9845351f3dac50f638c640ea94498e45891422b197e3fb1dc1ad860cff0a793f1f8bc2c1906feeeae90bc182bf0f727c2a48ee7fb9cfdd625b70e"
+        "proof_value": "86a86c691c5c156189f843bb12a1afe249e749626703924de03dc60d4857f4e6a7274cf0b235e22cf48277c250c891a14883d0e2ea19674a1650fe185075ad04"
       }
     }
   ],
   "dagBranches": {
-    "urn:uuid:5693ccba-a77d-4e20-afdf-78b53ae47969": [
+    "urn:uuid:05aabda7-5fb5-4f1b-88eb-63528f49e4c9": [
       {
         "@context": [
           "https://www.w3.org/ns/credentials/v2",
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:b8013d9c-1ed2-45a3-9234-49147e60dfa8",
+        "id": "urn:uuid:e6159038-be61-4b52-8aea-3ec59d797255",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:23:36.128687+00:00",
+        "sealTimestamp": "2026-05-17T16:33:21.476079+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -800,30 +800,30 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:5693ccba-a77d-4e20-afdf-78b53ae47969",
+          "previousSeal": "urn:uuid:05aabda7-5fb5-4f1b-88eb-63528f49e4c9",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:23:36.129691+00:00",
+          "created": "2026-05-17T16:33:21.477086+00:00",
           "verification_method": "did:web:sirraya.org:actors/icea#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "e8176490ae12ca7884120941fa9b595e424abeee00eaf1b3d06e5da2e8a5c78258bb34a6f1f3809e14456d4c23a298d47e2a0d47c1edfe5afee19c0a9dd86f09"
+          "proof_value": "5a4e1226f1af3016b7b5b29215298cfa77a46d845f0271569737b559032120b55738f47a008925c65cd437c98b6547d1e24a745f17f561a2ff102c1875712208"
         }
       }
     ],
-    "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da": [
+    "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a": [
       {
         "@context": [
           "https://www.w3.org/ns/credentials/v2",
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:53ae4eea-6474-43dd-b054-d56a0c4bf56b",
+        "id": "urn:uuid:86887472-bcea-4bf2-8df5-08adb363177e",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:23:36.132687+00:00",
+        "sealTimestamp": "2026-05-17T16:33:21.479082+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -867,30 +867,30 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:ac8ef286-e2a3-4848-b14d-e537b74026da",
+          "previousSeal": "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:23:36.132687+00:00",
+          "created": "2026-05-17T16:33:21.479082+00:00",
           "verification_method": "did:web:sirraya.org:actors/phyto#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "8048b3c8f20e437a7993f71746049fbf32cbc056e7adb3e8d349e0cd81f04261c819da8cb0131f2975b8e1ebd3f59dffeae89a3f244d58e7830f6072b9937a06"
+          "proof_value": "14258244c0040fb092b0e9e880632b549b995f40622cc6216afdaee6ef5721d101c6e8dbd57b991399a6b862856e372ce3d5bcff243ab361a787327ddfec300c"
         }
       }
     ],
-    "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc": [
+    "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852": [
       {
         "@context": [
           "https://www.w3.org/ns/credentials/v2",
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:473710d2-c5b2-4603-b2a5-7bd0f1bf0873",
+        "id": "urn:uuid:12b28343-2c5f-4326-8e7c-bb4098fd8918",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:23:36.135692+00:00",
+        "sealTimestamp": "2026-05-17T16:33:21.480088+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -936,17 +936,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:23:36.136689+00:00",
+          "created": "2026-05-17T16:33:21.481080+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "df1c58e74eef95d451f1ffe47f4195e17e19828ca0eef42e519a8ab0bb1d0b52fd8f2c550893d09b19da55faa95506cec124f52f20a0cdce00903bae9aa9ae02"
+          "proof_value": "8a98866a3eb12b0f21890e572cad7feced48796834982a1ad6f5498e6f7163f8e48fe4cac1e1667edafff475ca4f7bbd14873508e255c2b790129f630ab94e0d"
         }
       },
       {
@@ -955,9 +955,9 @@
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:b8ceee89-20e9-4db0-96f2-7ccc4cacb5de",
+        "id": "urn:uuid:2335688c-1544-48ee-9d49-cc960375c2fa",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:23:36.136689+00:00",
+        "sealTimestamp": "2026-05-17T16:33:21.481080+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -1003,17 +1003,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:23:36.137698+00:00",
+          "created": "2026-05-17T16:33:21.482086+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "6a2228066e0b6d4e59e354a226b109615a617705772b913ca43f3b6c35562e1a9703174594646bc5a74be301f3474420a9ce279b5281a93407fe05313d65fc06"
+          "proof_value": "a0b7a3814faf3097c6f8c329339613e1f17f344341636baeb91a89138e016413113447506b8d1fb647880c4d9315b7e28681f4fe02b509d47415619c3f31750c"
         }
       },
       {
@@ -1022,9 +1022,9 @@
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:549bfc11-eb6a-407d-82c7-ce9b19a557fc",
+        "id": "urn:uuid:915575f6-6c07-465d-a04f-ea8b0a386e56",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:23:36.137698+00:00",
+        "sealTimestamp": "2026-05-17T16:33:21.482086+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -1070,17 +1070,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:23:36.140690+00:00",
+          "created": "2026-05-17T16:33:21.482086+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "78b5c64ba8ca4140f00c567394905e7e0f140acc1edb920d69e5dcc9fe4307fca323b4162dca7638a887957c94d87db5a044f00da11b8b47ba60b64c50fcc60b"
+          "proof_value": "54fdc293e83be90c40be965a8b3395e60258d0c80e3b783e0408aef29fd3b86e6994fbd89054cbc1f16902e5e4f1c74f6606c9f9f8a3fd19e946539c43dd5f0d"
         }
       },
       {
@@ -1089,9 +1089,9 @@
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:ae32d0a2-ca77-4a02-9cf4-19dfc6677254",
+        "id": "urn:uuid:f20d13c6-cf50-4a16-a44c-3ab6cfbdd495",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:23:36.140690+00:00",
+        "sealTimestamp": "2026-05-17T16:33:21.482086+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -1137,17 +1137,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:23:36.140690+00:00",
+          "created": "2026-05-17T16:33:21.483085+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "1a800bd75db0b68a5253f7e9fca8962ca7d3eecbccd8990fc3fe28f79e858eda86ddd6d8e5be368734790419c4e9dd6026eb4fc1a3bb665b5e4747e7dddc2d06"
+          "proof_value": "de35eff2e1d0c8ed199b86394aab028cb3cbd9a124b880d9b25e9be7cdee51ad4ba3f6b8093bccb4792b7a443af3d8a4997b7a854367fd697efaef191be23406"
         }
       },
       {
@@ -1156,9 +1156,9 @@
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:6ba1ea79-2708-4276-8f1b-9177978cd316",
+        "id": "urn:uuid:26a0e3b2-0091-41b9-8174-3ce5b608e560",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:23:36.141693+00:00",
+        "sealTimestamp": "2026-05-17T16:33:21.483085+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -1204,30 +1204,30 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:439f8db0-ec02-4e38-aa48-21fe79545cfc",
+          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:23:36.141693+00:00",
+          "created": "2026-05-17T16:33:21.483085+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "5202276c1a8de691beea740ce043f3679b6020280f3c71e258e2060ba924393978bddc3f1edbb7bade5a3b04e616c2429c581834e607b6c5cc5b6bbeb912fd0d"
+          "proof_value": "d236bdd3f2d18227fab765166431e1724b9330ce42cc5ec6cd280e14088854e15345c6ee99e4666248bfb5c2c9d2bafebf0bb7da77bcf9485d7f6d8fdea25d0d"
         }
       }
     ],
-    "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a": [
+    "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e": [
       {
         "@context": [
           "https://www.w3.org/ns/credentials/v2",
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:7650f3f1-6f43-4fda-8a26-96f520b863a4",
+        "id": "urn:uuid:586b1338-927e-4fcf-99b7-b122276f5169",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:23:36.142694+00:00",
+        "sealTimestamp": "2026-05-17T16:33:21.484617+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -1280,17 +1280,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:5efe0c49-b4c1-4c7e-9dfc-c0e90018671a",
+          "previousSeal": "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:23:36.143697+00:00",
+          "created": "2026-05-17T16:33:21.485661+00:00",
           "verification_method": "did:web:sirraya.org:actors/sfa#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "d58c74249ff4712366d33f529d63bf5f4fe59fc20e5d4ac9a931a9026ccef9b5744e9f3b1caa9432c03aacde2dcc8dbb19fa1298b37f97a7c741c3975e006b0d"
+          "proof_value": "68b1e787746ccc0872113b43a7997cb9dadb06b7282d72cf2e6dab3a049ff7ae8389a03be3bcc0b71a248aaccebb811e0e736d057f070718e716980ac9b4660f"
         }
       }
     ]

@@ -10,7 +10,7 @@
       "id": "did:web:sirraya.org:actors/farmer#key-1",
       "type": "Ed25519VerificationKey2020",
       "controller": "did:web:sirraya.org:actors/farmer",
-      "publicKeyMultibase": "zed0178151d3f35c850f0eefb97e377e03898688b899c56eefc392315f6e1c8c3094e"
+      "publicKeyMultibase": "zed01dc6d35dc7c786a0c82f7150eabca78e7cf0eb0d62b10478639e2593a4c711f1e"
     }
   ],
   "assertionMethod": [

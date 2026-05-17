@@ -10,7 +10,7 @@
       "id": "did:web:sirraya.org:actors/icea#key-1",
       "type": "Ed25519VerificationKey2020",
       "controller": "did:web:sirraya.org:actors/icea",
-      "publicKeyMultibase": "zed01c353b6fd72cc16e9ca186496d794364880aa95046ffed5a38b1d91b45b5a04ff"
+      "publicKeyMultibase": "zed0184260a2d77ddcf9296d85a89fec757bf9a3cfd057e5983a1f03d4db420007426"
     }
   ],
   "assertionMethod": [

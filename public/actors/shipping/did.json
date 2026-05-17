@@ -10,7 +10,7 @@
       "id": "did:web:sirraya.org:actors/shipping#key-1",
       "type": "Ed25519VerificationKey2020",
       "controller": "did:web:sirraya.org:actors/shipping",
-      "publicKeyMultibase": "zed0174d1d789ac7b07a7ef1f7b68ea9cfcebf54314dd0c4b082536a0de2d968c0ebd"
+      "publicKeyMultibase": "zed01fe79bcbd91166beed8dbd2e648eca2722363bc7058a4804230b882f3ff36b726"
     }
   ],
   "assertionMethod": [

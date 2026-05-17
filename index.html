@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSC Event Matrix — Live Verification Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #03050a;
+            --bg-primary: #060912;
+            --bg-card: #0a0f1e;
+            --bg-card-hover: #0e1428;
+            --border: #1a2240;
+            --border-accent: #2a3460;
+            --text-primary: #e8ecf4;
+            --text-secondary: #8899bb;
+            --text-muted: #556688;
+            --green: #00d4aa;
+            --green-dim: rgba(0,212,170,0.10);
+            --green-glow: rgba(0,212,170,0.25);
+            --gold: #f0c040;
+            --gold-dim: rgba(240,192,64,0.10);
+            --blue: #4ecdc4;
+            --blue-dim: rgba(78,205,196,0.10);
+            --purple: #a29bfe;
+            --purple-dim: rgba(162,155,254,0.10);
+            --red: #ff6b6b;
+            --red-dim: rgba(255,107,107,0.10);
+            --gradient-1: linear-gradient(135deg, #00d4aa 0%, #00a8cc 100%);
+            --gradient-2: linear-gradient(135deg, #f0c040 0%, #e0a800 100%);
+            --gradient-3: linear-gradient(135deg, #4ecdc4 0%, #2ecc71 100%);
+            --gradient-4: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            --shadow-green: 0 0 40px rgba(0,212,170,0.10);
+            --shadow-gold: 0 0 30px rgba(240,192,64,0.08);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── Background ── */
+        .bg-orb { position: fixed; border-radius: 50%; filter: blur(140px); opacity: 0.06; pointer-events: none; z-index: 0; }
+        .bg-orb-1 { width: 700px; height: 700px; background: #00d4aa; top: -250px; right: -150px; animation: float1 22s ease-in-out infinite; }
+        .bg-orb-2 { width: 500px; height: 500px; background: #a29bfe; bottom: -200px; left: -150px; animation: float2 26s ease-in-out infinite; }
+        .bg-orb-3 { width: 350px; height: 350px; background: #f0c040; top: 45%; left: 35%; animation: float3 19s ease-in-out infinite; }
+        @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-70px,50px) scale(1.08); } 66% { transform: translate(40px,-40px) scale(0.92); } }
+        @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(60px,-35px) scale(1.12); } 66% { transform: translate(-50px,25px) scale(0.88); } }
+        @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-40px,-50px) scale(1.18); } }
+
+        .container { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 40px 30px; }
+
+        /* ── Header ── */
+        .header { text-align: center; padding: 50px 20px 40px; }
+        .header-badge { display: inline-block; padding: 7px 18px; border-radius: 100px; background: var(--green-dim); border: 1px solid rgba(0,212,170,0.25); color: var(--green); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+        .header h1 { font-size: 44px; font-weight: 800; letter-spacing: -1.5px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .header .subtitle { font-size: 14px; color: var(--text-secondary); font-weight: 400; letter-spacing: 2px; }
+
+        /* ── Toolbar ── */
+        .toolbar { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+        .btn { padding: 12px 24px; border-radius: 100px; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; transition: all 0.25s ease; border: none; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; }
+        .btn-primary { background: var(--gradient-1); color: #000; }
+        .btn-primary:hover { box-shadow: var(--shadow-green); transform: translateY(-1px); }
+        .btn-outline { background: transparent; color: var(--green); border: 1.5px solid rgba(0,212,170,0.4); }
+        .btn-outline:hover { border-color: var(--green); background: var(--green-dim); }
+        .btn-purple { background: transparent; color: var(--purple); border: 1.5px solid rgba(162,155,254,0.4); }
+        .btn-purple:hover { border-color: var(--purple); background: var(--purple-dim); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+        .btn .spinner { width: 14px; height: 14px; border: 2px solid transparent; border-top-color: currentColor; border-radius: 50%; animation: spin 0.7s linear infinite; display: none; }
+        .btn.loading .spinner { display: inline-block; }
+        .btn.loading .btn-text { opacity: 0.7; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Stats ── */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
+        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+        .stat-card.green::before { background: var(--gradient-1); }
+        .stat-card.gold::before { background: var(--gradient-2); }
+        .stat-card.blue::before { background: var(--gradient-3); }
+        .stat-card.purple::before { background: var(--gradient-4); }
+        .stat-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+        .stat-value { font-size: 38px; font-weight: 800; letter-spacing: -1px; }
+        .stat-card.green .stat-value { color: var(--green); }
+        .stat-card.gold .stat-value { color: var(--gold); }
+        .stat-card.blue .stat-value { color: var(--blue); }
+        .stat-card.purple .stat-value { color: var(--purple); }
+        .stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+        /* ── Verification Status Banner ── */
+        .verify-banner { border-radius: var(--radius); padding: 18px 24px; margin-bottom: 24px; display: none; align-items: center; gap: 12px; font-weight: 600; font-size: 14px; }
+        .verify-banner.show { display: flex; }
+        .verify-banner.success { background: var(--green-dim); border: 1px solid rgba(0,212,170,0.3); color: var(--green); }
+        .verify-banner.fail { background: var(--red-dim); border: 1px solid rgba(255,107,107,0.3); color: var(--red); }
+        .verify-banner.loading-banner { background: rgba(240,192,64,0.08); border: 1px solid rgba(240,192,64,0.25); color: var(--gold); }
+
+        /* ── Upload Zone ── */
+        .upload-zone { background: var(--bg-card); border: 2px dashed var(--border); border-radius: 20px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.3s ease; margin-bottom: 30px; }
+        .upload-zone:hover { border-color: var(--green); background: var(--bg-card-hover); box-shadow: var(--shadow-green); }
+        .upload-zone.drag-over { border-color: var(--green); background: var(--green-dim); }
+        .upload-icon { font-size: 40px; margin-bottom: 12px; }
+        .upload-text { font-size: 15px; color: var(--text-secondary); font-weight: 500; }
+        .upload-hint { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+        input[type="file"] { display: none; }
+
+        /* ── Section ── */
+        .section-title { font-size: 18px; font-weight: 700; letter-spacing: 1px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-title .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green-glow); }
+
+        /* ── Timeline ── */
+        .timeline { position: relative; padding-left: 36px; }
+        .timeline::before { content: ''; position: absolute; left: 16px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--green), var(--gold), var(--blue), var(--purple)); border-radius: 1px; }
+
+        .seal-card { position: relative; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 18px; transition: all 0.3s ease; animation: fadeInUp 0.45s ease forwards; opacity: 0; }
+        .seal-card:hover { border-color: var(--border-accent); background: var(--bg-card-hover); transform: translateX(3px); }
+        .seal-card::before { content: ''; position: absolute; left: -26px; top: 28px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--bg-deep); }
+        .seal-card.q1::before { background: var(--green); box-shadow: 0 0 10px var(--green-glow); }
+        .seal-card.q2::before { background: var(--gold); box-shadow: 0 0 10px rgba(240,192,64,0.3); }
+        .seal-card.q3::before { background: var(--blue); box-shadow: 0 0 10px rgba(78,205,196,0.3); }
+        .seal-card.q4::before { background: var(--purple); box-shadow: 0 0 10px rgba(162,155,254,0.3); }
+
+        /* Verification status dot on card */
+        .seal-card .verify-dot { position: absolute; right: 28px; top: 24px; width: 10px; height: 10px; border-radius: 50%; display: none; }
+        .seal-card .verify-dot.show { display: block; }
+        .seal-card .verify-dot.pass { background: var(--green); box-shadow: 0 0 8px var(--green-glow); }
+        .seal-card .verify-dot.fail { background: var(--red); box-shadow: 0 0 8px rgba(255,107,107,0.4); }
+        .seal-card .verify-dot.checking { background: var(--gold); box-shadow: 0 0 8px rgba(240,192,64,0.4); animation: pulse 1s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+        .seal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+        .seal-sequence { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); font-weight: 600; letter-spacing: 2px; }
+        .seal-id { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); opacity: 0.5; }
+        .quadrant-badge { padding: 5px 12px; border-radius: 100px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+        .quadrant-badge.q1 { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,212,170,0.3); }
+        .quadrant-badge.q2 { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(240,192,64,0.3); }
+        .quadrant-badge.q3 { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(78,205,196,0.3); }
+        .quadrant-badge.q4 { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(162,155,254,0.3); }
+
+        .seal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+        .seal-field { display: flex; flex-direction: column; gap: 2px; }
+        .seal-field-label { font-size: 9px; color: var(--text-muted); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+        .seal-field-value { font-size: 12px; color: var(--text-primary); font-weight: 500; }
+        .seal-field-value.mono { font-family: 'JetBrains Mono', monospace; font-size: 10px; word-break: break-all; color: var(--text-secondary); }
+        .seal-field-value.did { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--blue); word-break: break-all; }
+
+        .proof-section { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+        .proof-signature { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--purple); word-break: break-all; background: rgba(162,155,254,0.04); padding: 8px 12px; border-radius: 8px; margin-top: 4px; }
+
+        .dag-branch { margin-left: 20px; padding: 10px 14px; background: var(--bg-card-hover); border-left: 2px solid var(--border-accent); border-radius: 0 8px 8px 0; margin-top: 6px; font-size: 11px; }
+
+        /* ── Summary ── */
+        .chain-summary { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin-top: 36px; }
+        .chain-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .vocab-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .vocab-tag { padding: 4px 8px; border-radius: 6px; background: var(--green-dim); color: var(--green); font-size: 10px; font-family: 'JetBrains Mono', monospace; }
+
+        /* ── Loading ── */
+        .loading-state { text-align: center; padding: 60px; color: var(--text-muted); }
+        .loading-spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) { .stats-row { grid-template-columns: repeat(2, 1fr); } .seal-body { grid-template-columns: 1fr; } .header h1 { font-size: 30px; } .container { padding: 20px 14px; } .chain-summary-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 500px) { .stats-row { grid-template-columns: 1fr; } .header h1 { font-size: 24px; } .toolbar { flex-direction: column; align-items: center; } .btn { width: 100%; justify-content: center; } }
+    </style>
+</head>
+<body>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-badge">W3C VSC Community Group</div>
+            <h1>VSC Event Matrix</h1>
+            <div class="subtitle">Live Verification Dashboard · sirraya.org</div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <button class="btn btn-primary" id="btnAutoLoad" onclick="autoLoadChain()">
+                <span class="spinner"></span><span class="btn-text">◈ Auto-Load Latest Chain</span>
+            </button>
+            <button class="btn btn-outline" id="btnUpload" onclick="document.getElementById('fileInput').click()">
+                📂 Upload Chain JSON
+            </button>
+            <button class="btn btn-purple" id="btnVerify" onclick="runLiveVerification()" disabled>
+                <span class="spinner"></span><span class="btn-text">🔒 Verify Against Live DIDs</span>
+            </button>
+        </div>
+        <input type="file" id="fileInput" accept=".json" onchange="handleFileUpload(event)">
+
+        <!-- Verification Banner -->
+        <div class="verify-banner" id="verifyBanner"></div>
+
+        <!-- Stats -->
+        <div class="stats-row" id="statsRow">
+            <div class="stat-card green"><div class="stat-value" id="statSeals">—</div><div class="stat-label">Total SEALs</div></div>
+            <div class="stat-card gold"><div class="stat-value" id="statJurisdictions">—</div><div class="stat-label">Jurisdictions</div></div>
+            <div class="stat-card blue"><div class="stat-value" id="statQuadrants">—</div><div class="stat-label">Quadrants</div></div>
+            <div class="stat-card purple"><div class="stat-value" id="statVocabularies">—</div><div class="stat-label">Vocabularies</div></div>
+        </div>
+
+        <!-- Upload Zone -->
+        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">◈</div>
+            <div class="upload-text">Drop Chain JSON File Here</div>
+            <div class="upload-hint">or click to browse · Auto-loads latest on page open</div>
+        </div>
+
+        <!-- Results -->
+        <div id="results">
+            <div class="loading-state" id="initialLoader">
+                <div class="loading-spinner"></div>
+                <div>Loading latest chain…</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const DOMAIN = 'sirraya.org';
+        let currentChainData = null;
+        let currentSeals = [];
+
+        // ── Auto-load on page open ──
+        window.addEventListener('DOMContentLoaded', () => {
+            // Try to auto-load from a default path
+            // Since we can't scan the filesystem from a browser, show the upload zone
+            document.getElementById('initialLoader').style.display = 'none';
+            document.getElementById('results').innerHTML = `
+                <div style="text-align:center;padding:60px 20px;">
+                    <div style="font-size:64px;margin-bottom:16px;opacity:0.5;">◈</div>
+                    <h2 style="color:var(--text-secondary);font-weight:600;margin-bottom:8px;">Ready to Verify</h2>
+                    <p style="color:var(--text-muted);font-size:13px;">Click <strong>Auto-Load</strong> if you have a chain file in the same directory,<br>or <strong>Upload</strong> a VSC chain JSON file to begin.</p>
+                </div>`;
+        });
+
+        // ── Drag and Drop ──
+        const uploadZone = document.getElementById('uploadZone');
+        uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+        uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if (file) processChainFile(file);
+        });
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) processChainFile(file);
+        }
+
+        function autoLoadChain() {
+            const btn = document.getElementById('btnAutoLoad');
+            btn.classList.add('loading');
+            // Create a file input to let user select their chain file
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) processChainFile(file);
+                btn.classList.remove('loading');
+            };
+            input.oncancel = function() { btn.classList.remove('loading'); };
+            input.click();
+        }
+
+        function processChainFile(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    currentChainData = data;
+                    currentSeals = data.linearSeals || data.seals || [];
+                    renderDashboard(data);
+                    document.getElementById('btnVerify').disabled = false;
+                    document.getElementById('uploadZone').style.display = 'none';
+                    document.getElementById('verifyBanner').classList.remove('show');
+                } catch (err) {
+                    showError('Invalid JSON file. Please load a valid VSC chain file.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // ── Render ──
+        function renderDashboard(data) {
+            const seals = currentSeals;
+            const dagBranches = data.dagBranches || {};
+            const chainId = data.chainId || 'N/A';
+
+            if (seals.length === 0) {
+                document.getElementById('results').innerHTML = `<div style="text-align:center;padding:60px;"><p style="color:var(--text-muted);">Empty chain file.</p></div>`;
+                return;
+            }
+
+            // Stats
+            const jurisdictions = new Set(seals.map(s => s.eventVector?.where?.jurisdiction).filter(Boolean));
+            const quadrants = new Set(seals.map(s => getQuadrant(s)).filter(Boolean));
+            const vocabularies = new Set();
+            const collectVocabs = (s) => {
+                const ext = s.extensions?.["+Dn"] || {};
+                Object.values(ext).forEach(v => Object.keys(v).forEach(urn => vocabularies.add(urn)));
+            };
+            seals.forEach(collectVocabs);
+            Object.values(dagBranches).forEach(branches => branches.forEach(collectVocabs));
+
+            document.getElementById('statSeals').textContent = seals.length + Object.values(dagBranches).flat().length;
+            document.getElementById('statJurisdictions').textContent = jurisdictions.size;
+            document.getElementById('statQuadrants').textContent = quadrants.size;
+            document.getElementById('statVocabularies').textContent = vocabularies.size;
+
+            // Build timeline
+            let html = `<div class="section-title"><span class="dot"></span>Custody Chain Timeline</div><div class="timeline">`;
+
+            seals.forEach((seal, i) => {
+                const ev = seal.eventVector || {};
+                const what = ev.what || {};
+                const when = ev.when || {};
+                const where = ev.where || {};
+                const who = ev.who || {};
+                const how = ev.how || {};
+                const proof = seal.proof || {};
+                const q = getQuadrant(seal);
+                const qLabel = getQuadrantLabel(q);
+                const seq = seal.chainOfCustody?.sequenceNumber || (i + 1);
+
+                html += `
+                <div class="seal-card ${q}" style="animation-delay:${i*0.06}s" id="sealCard${i}">
+                    <div class="verify-dot" id="verifyDot${i}"></div>
+                    <div class="seal-header">
+                        <div>
+                            <div class="seal-sequence">SEAL ${String(seq).padStart(3,'0')}</div>
+                            <div class="seal-id">${(seal.id||'').substring(0,42)}…</div>
+                        </div>
+                        <span class="quadrant-badge ${q}">${qLabel}</span>
+                    </div>
+                    <div class="seal-body">
+                        <div class="seal-field"><span class="seal-field-label">Business Step</span><span class="seal-field-value">${how.business_step||'—'}</span></div>
+                        <div class="seal-field"><span class="seal-field-label">Disposition</span><span class="seal-field-value">${how.disposition||'—'}</span></div>
+                        <div class="seal-field"><span class="seal-field-label">Product</span><span class="seal-field-value">${what.description||'—'}</span></div>
+                        <div class="seal-field"><span class="seal-field-label">Lot / Batch</span><span class="seal-field-value mono">${what.batch_or_lot||'—'}</span></div>
+                        <div class="seal-field"><span class="seal-field-label">Jurisdiction</span><span class="seal-field-value">${where.jurisdiction||'—'}</span></div>
+                        <div class="seal-field"><span class="seal-field-label">Quantity</span><span class="seal-field-value">${what.quantity||'—'} ${what.quantity_unit||''}</span></div>
+                        <div class="seal-field" style="grid-column:1/-1;"><span class="seal-field-label">Actor</span><span class="seal-field-value did">${who.actor_did||'—'}</span></div>
+                    </div>
+                    <div class="proof-section">
+                        <span class="seal-field-label">Ed25519 Proof</span>
+                        <div class="proof-signature">${(proof.proof_value||proof.proofValue||'—').substring(0,75)}…</div>
+                    </div>`;
+
+                const branches = dagBranches[seal.id] || [];
+                branches.forEach(b => {
+                    html += `<div class="dag-branch"><span style="color:var(--text-muted);font-weight:700;font-size:10px;letter-spacing:1px;">DAG</span> <span style="color:var(--text-secondary);">${b.eventVector?.how?.business_step||'attestation'}</span> <span style="color:var(--text-muted);">· ${b.eventVector?.who?.actor_role||''}</span></div>`;
+                });
+
+                html += `</div>`;
+            });
+
+            html += `</div>`;
+
+            // Summary
+            html += `
+            <div class="chain-summary">
+                <div class="chain-summary-grid">
+                    <div class="seal-field"><span class="seal-field-label">Chain ID</span><span class="seal-field-value mono">${chainId}</span></div>
+                    <div class="seal-field"><span class="seal-field-label">Domain</span><span class="seal-field-value">${DOMAIN}</span></div>
+                    <div class="seal-field"><span class="seal-field-label">Jurisdiction Path</span><span class="seal-field-value">${[...jurisdictions].join(' → ')}</span></div>
+                    <div class="seal-field"><span class="seal-field-label">Quadrant Path</span><span class="seal-field-value">${[...quadrants].join(' → ')}</span></div>
+                </div>
+                ${vocabularies.size > 0 ? `<div style="margin-top:16px;"><span class="seal-field-label">+Dn Vocabularies</span><div class="vocab-tags">${[...vocabularies].map(v => `<span class="vocab-tag">${v.split(':').pop()}</span>`).join('')}</div></div>` : ''}
+            </div>`;
+
+            document.getElementById('results').innerHTML = html;
+        }
+
+        // ── Live Verification ──
+        async function runLiveVerification() {
+            if (!currentSeals.length) return;
+
+            const btn = document.getElementById('btnVerify');
+            const banner = document.getElementById('verifyBanner');
+            btn.classList.add('loading');
+            btn.disabled = true;
+            banner.className = 'verify-banner show loading-banner';
+            banner.innerHTML = '<span style="font-size:18px;">⏳</span> Verifying against live DIDs at sirraya.org…';
+
+            // Reset dots
+            currentSeals.forEach((_, i) => {
+                const dot = document.getElementById(`verifyDot${i}`);
+                if (dot) { dot.className = 'verify-dot show checking'; }
+            });
+
+            let verified = 0;
+            let failed = 0;
+            const results = [];
+
+            for (let i = 0; i < currentSeals.length; i++) {
+                const seal = currentSeals[i];
+                const did = seal.eventVector?.who?.actor_did;
+                const dot = document.getElementById(`verifyDot${i}`);
+
+                if (!did) {
+                    failed++;
+                    if (dot) dot.className = 'verify-dot show fail';
+                    results.push({ index: i, valid: false, error: 'No DID' });
+                    continue;
+                }
+
+                try {
+                    const didPath = did.replace('did:web:', '').replace(/:/g, '/');
+                    const url = `https://${didPath}/did.json`;
+
+                    const resp = await fetch(url);
+                    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+
+                    const didDoc = await resp.json();
+                    const pubKeyMultibase = didDoc?.verificationMethod?.[0]?.publicKeyMultibase;
+                    if (!pubKeyMultibase) throw new Error('No public key');
+
+                    // Extract the raw public key bytes
+                    let keyHex = pubKeyMultibase;
+                    if (keyHex.startsWith('z')) keyHex = keyHex.substring(1);
+                    if (keyHex.startsWith('ed01')) keyHex = keyHex.substring(4);
+
+                    // Build payload (JCS canonicalization — sort keys)
+                    const payloadObj = {
+                        id: seal.id,
+                        sealVersion: seal.sealVersion,
+                        sealTimestamp: seal.sealTimestamp,
+                        eventVector: seal.eventVector,
+                        extensions: seal.extensions || {"+Dn": {}}
+                    };
+                    const payloadStr = JSON.stringify(payloadObj, Object.keys(payloadObj).sort());
+                    const payloadBytes = new TextEncoder().encode(payloadStr);
+
+                    // Import key
+                    const keyBytes = hexToBytes(keyHex);
+                    const cryptoKey = await crypto.subtle.importKey('raw', keyBytes, { name: 'Ed25519' }, false, ['verify']);
+
+                    // Get signature
+                    const sigHex = seal.proof?.proof_value || seal.proof?.proofValue || '';
+                    const sigBytes = hexToBytes(sigHex);
+
+                    // Verify
+                    const isValid = await crypto.subtle.verify({ name: 'Ed25519' }, cryptoKey, sigBytes, payloadBytes);
+
+                    if (isValid) {
+                        verified++;
+                        if (dot) dot.className = 'verify-dot show pass';
+                        results.push({ index: i, valid: true });
+                    } else {
+                        failed++;
+                        if (dot) dot.className = 'verify-dot show fail';
+                        results.push({ index: i, valid: false, error: 'Invalid signature' });
+                    }
+                } catch (err) {
+                    failed++;
+                    if (dot) dot.className = 'verify-dot show fail';
+                    results.push({ index: i, valid: false, error: err.message });
+                }
+            }
+
+            // Update banner
+            btn.classList.remove('loading');
+            btn.disabled = false;
+            if (failed === 0) {
+                banner.className = 'verify-banner show success';
+                banner.innerHTML = `<span style="font-size:18px;">✓</span> ALL ${verified} SEALs verified against live DIDs at ${DOMAIN} — DIDs synced`;
+            } else {
+                banner.className = 'verify-banner show fail';
+                banner.innerHTML = `<span style="font-size:18px;">✗</span> ${verified} verified · ${failed} FAILED — Check DIDs at ${DOMAIN}`;
+            }
+        }
+
+        function hexToBytes(hex) {
+            const bytes = new Uint8Array(hex.length / 2);
+            for (let i = 0; i < hex.length; i += 2) bytes[i/2] = parseInt(hex.substring(i,i+2), 16);
+            return bytes;
+        }
+
+        function showError(msg) {
+            document.getElementById('results').innerHTML = `<div style="text-align:center;padding:60px;color:var(--red);">${msg}</div>`;
+        }
+
+        function getQuadrant(seal) {
+            const d = seal.eventVector?.how?.disposition || '';
+            if (['created','harvested','commissioned','manufactured','declared'].includes(d)) return 'q1';
+            if (['in_transit','stored','loaded','cleared_for_export','packed','shipped'].includes(d)) return 'q2';
+            if (['received','verified','accepted','customs_cleared','cleared_for_import'].includes(d)) return 'q3';
+            if (['consumed','dispensed','destroyed','recalled','expired'].includes(d)) return 'q4';
+            return 'q2';
+        }
+        function getQuadrantLabel(q) {
+            return { q1: 'Q1 · ORIGIN', q2: 'Q2 · TRANSIT', q3: 'Q3 · DESTINATION', q4: 'Q4 · TERMINAL' }[q] || 'Q2 · TRANSIT';
+        }
+    </script>
+</body>
+</html>
