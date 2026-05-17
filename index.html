@@ -3,510 +3,1331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VSC Event Matrix — Live Verification Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Terra-to-Table · VSC Chain Verifier</title>
     <style>
         :root {
-            --bg-deep: #03050a;
-            --bg-primary: #060912;
-            --bg-card: #0a0f1e;
-            --bg-card-hover: #0e1428;
-            --border: #1a2240;
-            --border-accent: #2a3460;
-            --text-primary: #e8ecf4;
-            --text-secondary: #8899bb;
-            --text-muted: #556688;
-            --green: #00d4aa;
-            --green-dim: rgba(0,212,170,0.10);
-            --green-glow: rgba(0,212,170,0.25);
-            --gold: #f0c040;
-            --gold-dim: rgba(240,192,64,0.10);
-            --blue: #4ecdc4;
-            --blue-dim: rgba(78,205,196,0.10);
-            --purple: #a29bfe;
-            --purple-dim: rgba(162,155,254,0.10);
-            --red: #ff6b6b;
-            --red-dim: rgba(255,107,107,0.10);
-            --gradient-1: linear-gradient(135deg, #00d4aa 0%, #00a8cc 100%);
-            --gradient-2: linear-gradient(135deg, #f0c040 0%, #e0a800 100%);
-            --gradient-3: linear-gradient(135deg, #4ecdc4 0%, #2ecc71 100%);
-            --gradient-4: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
-            --shadow-green: 0 0 40px rgba(0,212,170,0.10);
-            --shadow-gold: 0 0 30px rgba(240,192,64,0.08);
-            --radius: 16px;
-            --radius-sm: 10px;
+            --bg: #0a0a0f;
+            --surface: #13131a;
+            --surface2: #1a1a24;
+            --border: #252535;
+            --text: #e0e0e0;
+            --text2: #8888a0;
+            --accent: #4ade80;
+            --accent2: #22c55e;
+            --fail: #ef4444;
+            --warn: #f59e0b;
+            --info: #38bdf8;
+            --purple: #a78bfa;
+            --rose: #fb7185;
+            --radius: 12px;
+            --font: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            background: var(--bg-deep);
-            color: var(--text-primary);
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(74, 222, 128, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 60%, rgba(56, 189, 248, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(167, 139, 250, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        /* ── Background ── */
-        .bg-orb { position: fixed; border-radius: 50%; filter: blur(140px); opacity: 0.06; pointer-events: none; z-index: 0; }
-        .bg-orb-1 { width: 700px; height: 700px; background: #00d4aa; top: -250px; right: -150px; animation: float1 22s ease-in-out infinite; }
-        .bg-orb-2 { width: 500px; height: 500px; background: #a29bfe; bottom: -200px; left: -150px; animation: float2 26s ease-in-out infinite; }
-        .bg-orb-3 { width: 350px; height: 350px; background: #f0c040; top: 45%; left: 35%; animation: float3 19s ease-in-out infinite; }
-        @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-70px,50px) scale(1.08); } 66% { transform: translate(40px,-40px) scale(0.92); } }
-        @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(60px,-35px) scale(1.12); } 66% { transform: translate(-50px,25px) scale(0.88); } }
-        @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-40px,-50px) scale(1.18); } }
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 24px;
+            position: relative;
+            z-index: 1;
+        }
 
-        .container { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 40px 30px; }
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 48px 24px 24px;
+            position: relative;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .header-logo svg {
+            width: 48px;
+            height: 48px;
+        }
+        .header h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #4ade80 0%, #38bdf8 50%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            color: var(--text2);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
 
-        /* ── Header ── */
-        .header { text-align: center; padding: 50px 20px 40px; }
-        .header-badge { display: inline-block; padding: 7px 18px; border-radius: 100px; background: var(--green-dim); border: 1px solid rgba(0,212,170,0.25); color: var(--green); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
-        .header h1 { font-size: 44px; font-weight: 800; letter-spacing: -1.5px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
-        .header .subtitle { font-size: 14px; color: var(--text-secondary); font-weight: 400; letter-spacing: 2px; }
+        /* Upload Zone */
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: var(--surface);
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: var(--accent);
+            background: var(--surface2);
+            box-shadow: 0 0 40px rgba(74, 222, 128, 0.08);
+        }
+        .upload-zone .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+        .upload-zone .upload-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+        .upload-zone .upload-hint {
+            font-size: 0.78rem;
+            color: var(--text2);
+            margin-top: 6px;
+        }
+        .upload-zone input {
+            display: none;
+        }
+        .upload-zone.loaded {
+            border-color: var(--accent);
+            border-style: solid;
+            background: var(--surface2);
+        }
+        .upload-zone .file-info {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .upload-zone.loaded .file-info {
+            display: flex;
+        }
+        .upload-zone.loaded .upload-prompt {
+            display: none;
+        }
+        .upload-zone .file-name {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        .upload-zone .clear-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+        .upload-zone .clear-btn:hover {
+            border-color: var(--rose);
+            color: var(--rose);
+        }
 
-        /* ── Toolbar ── */
-        .toolbar { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
-        .btn { padding: 12px 24px; border-radius: 100px; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; transition: all 0.25s ease; border: none; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; }
-        .btn-primary { background: var(--gradient-1); color: #000; }
-        .btn-primary:hover { box-shadow: var(--shadow-green); transform: translateY(-1px); }
-        .btn-outline { background: transparent; color: var(--green); border: 1.5px solid rgba(0,212,170,0.4); }
-        .btn-outline:hover { border-color: var(--green); background: var(--green-dim); }
-        .btn-purple { background: transparent; color: var(--purple); border: 1.5px solid rgba(162,155,254,0.4); }
-        .btn-purple:hover { border-color: var(--purple); background: var(--purple-dim); }
-        .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
-        .btn .spinner { width: 14px; height: 14px; border: 2px solid transparent; border-top-color: currentColor; border-radius: 50%; animation: spin 0.7s linear infinite; display: none; }
-        .btn.loading .spinner { display: inline-block; }
-        .btn.loading .btn-text { opacity: 0.7; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        /* Status Banner */
+        .status-banner {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 28px;
+            display: none;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .status-banner.visible {
+            display: flex;
+        }
+        .status-banner::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--accent);
+            border-radius: 4px 0 0 4px;
+        }
+        .status-banner.verified::after {
+            background: var(--accent);
+        }
+        .status-banner.verifying::after {
+            background: var(--warn);
+        }
+        .status-banner.failed::after {
+            background: var(--fail);
+        }
+        .status-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+        }
+        .verifying .status-dot {
+            background: var(--warn);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+            animation: pulse 0.8s infinite;
+        }
+        .failed .status-dot {
+            background: var(--fail);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+            animation: none;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 35px rgba(74, 222, 128, 0.8);
+            }
+        }
+        .status-info {
+            flex: 1;
+        }
+        .status-info .big {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .failed .status-info .big {
+            color: var(--fail);
+        }
+        .verifying .status-info .big {
+            color: var(--warn);
+        }
+        .status-info .small {
+            font-size: 0.8rem;
+            color: var(--text2);
+        }
+        .status-stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat .num {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: var(--mono);
+            color: var(--text);
+        }
+        .stat .label {
+            font-size: 0.7rem;
+            color: var(--text2);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
 
-        /* ── Stats ── */
-        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
-        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-        .stat-card.green::before { background: var(--gradient-1); }
-        .stat-card.gold::before { background: var(--gradient-2); }
-        .stat-card.blue::before { background: var(--gradient-3); }
-        .stat-card.purple::before { background: var(--gradient-4); }
-        .stat-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
-        .stat-value { font-size: 38px; font-weight: 800; letter-spacing: -1px; }
-        .stat-card.green .stat-value { color: var(--green); }
-        .stat-card.gold .stat-value { color: var(--gold); }
-        .stat-card.blue .stat-value { color: var(--blue); }
-        .stat-card.purple .stat-value { color: var(--purple); }
-        .stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+        /* Verify button */
+        .verify-btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font);
+            transition: all 0.2s;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+        .verify-btn.visible {
+            display: inline-flex;
+        }
+        .verify-btn:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 24px rgba(74, 222, 128, 0.3);
+        }
+        .verify-btn:disabled {
+            background: var(--border);
+            color: var(--text2);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .verify-btn .spinner {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #000;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+        .verify-btn.loading .spinner {
+            display: block;
+        }
+        .verify-btn.loading .btn-text {
+            display: none;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
-        /* ── Verification Status Banner ── */
-        .verify-banner { border-radius: var(--radius); padding: 18px 24px; margin-bottom: 24px; display: none; align-items: center; gap: 12px; font-weight: 600; font-size: 14px; }
-        .verify-banner.show { display: flex; }
-        .verify-banner.success { background: var(--green-dim); border: 1px solid rgba(0,212,170,0.3); color: var(--green); }
-        .verify-banner.fail { background: var(--red-dim); border: 1px solid rgba(255,107,107,0.3); color: var(--red); }
-        .verify-banner.loading-banner { background: rgba(240,192,64,0.08); border: 1px solid rgba(240,192,64,0.25); color: var(--gold); }
+        /* Chain Bar */
+        .chain-bar {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 20px;
+            margin-bottom: 24px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--text2);
+            flex-wrap: wrap;
+        }
+        .chain-bar.visible {
+            display: flex;
+        }
+        .chain-bar .chain-id {
+            color: var(--info);
+            font-size: 0.75rem;
+        }
+        .chain-bar .badge {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            color: var(--text2);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .chain-bar .badge .icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: inline-block;
+        }
 
-        /* ── Upload Zone ── */
-        .upload-zone { background: var(--bg-card); border: 2px dashed var(--border); border-radius: 20px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.3s ease; margin-bottom: 30px; }
-        .upload-zone:hover { border-color: var(--green); background: var(--bg-card-hover); box-shadow: var(--shadow-green); }
-        .upload-zone.drag-over { border-color: var(--green); background: var(--green-dim); }
-        .upload-icon { font-size: 40px; margin-bottom: 12px; }
-        .upload-text { font-size: 15px; color: var(--text-secondary); font-weight: 500; }
-        .upload-hint { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
-        input[type="file"] { display: none; }
+        /* Tabs */
+        .tabs {
+            display: none;
+            gap: 4px;
+            margin-bottom: 24px;
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 4px;
+            border: 1px solid var(--border);
+        }
+        .tabs.visible {
+            display: flex;
+        }
+        .tab {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text2);
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+            font-family: var(--font);
+        }
+        .tab:hover {
+            color: var(--text);
+            background: var(--surface2);
+        }
+        .tab.active {
+            background: var(--surface2);
+            color: var(--text);
+            box-shadow: 0 0 0 1px var(--border);
+        }
 
-        /* ── Section ── */
-        .section-title { font-size: 18px; font-weight: 700; letter-spacing: 1px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .section-title .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green-glow); }
+        /* SVG Container */
+        .viz-container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 24px;
+            display: none;
+        }
+        .viz-container.visible {
+            display: block;
+        }
+        .viz-container svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-        /* ── Timeline ── */
-        .timeline { position: relative; padding-left: 36px; }
-        .timeline::before { content: ''; position: absolute; left: 16px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--green), var(--gold), var(--blue), var(--purple)); border-radius: 1px; }
+        /* Detail Panel */
+        .detail-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: none;
+        }
+        .detail-panel.visible {
+            display: block;
+        }
+        .detail-header {
+            background: var(--surface2);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .detail-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .detail-header .seal-id {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--info);
+        }
+        .detail-header .verify-status {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 16px;
+        }
+        .verify-status.pass {
+            color: var(--accent);
+            background: rgba(74, 222, 128, 0.1);
+        }
+        .verify-status.fail {
+            color: var(--fail);
+            background: rgba(239, 68, 68, 0.1);
+        }
+        .verify-status.pending {
+            color: var(--warn);
+            background: rgba(245, 158, 11, 0.1);
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .detail-card {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .detail-card:nth-child(odd) {
+            border-right: 1px solid var(--border);
+        }
+        .detail-card .card-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text2);
+            margin-bottom: 6px;
+        }
+        .detail-card .card-value {
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .detail-card .card-value.mono {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            word-break: break-all;
+        }
+        .detail-proof {
+            grid-column: 1 / -1;
+            background: var(--surface2);
+            padding: 16px 20px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            word-break: break-all;
+        }
+        .detail-proof.proof-valid {
+            color: var(--accent);
+        }
+        .detail-proof.proof-invalid {
+            color: var(--fail);
+        }
+        .detail-proof .proof-label {
+            color: var(--text2);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+            font-family: var(--font);
+        }
 
-        .seal-card { position: relative; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 18px; transition: all 0.3s ease; animation: fadeInUp 0.45s ease forwards; opacity: 0; }
-        .seal-card:hover { border-color: var(--border-accent); background: var(--bg-card-hover); transform: translateX(3px); }
-        .seal-card::before { content: ''; position: absolute; left: -26px; top: 28px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--bg-deep); }
-        .seal-card.q1::before { background: var(--green); box-shadow: 0 0 10px var(--green-glow); }
-        .seal-card.q2::before { background: var(--gold); box-shadow: 0 0 10px rgba(240,192,64,0.3); }
-        .seal-card.q3::before { background: var(--blue); box-shadow: 0 0 10px rgba(78,205,196,0.3); }
-        .seal-card.q4::before { background: var(--purple); box-shadow: 0 0 10px rgba(162,155,254,0.3); }
+        /* SVG interactive */
+        .seal-node {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .seal-node:hover rect.node-bg {
+            filter: brightness(1.3);
+        }
+        .seal-node:hover text.node-step {
+            fill: #fff;
+        }
+        .seal-node.selected rect.node-bg {
+            stroke: #fff !important;
+            stroke-width: 2.5 !important;
+        }
 
-        /* Verification status dot on card */
-        .seal-card .verify-dot { position: absolute; right: 28px; top: 24px; width: 10px; height: 10px; border-radius: 50%; display: none; }
-        .seal-card .verify-dot.show { display: block; }
-        .seal-card .verify-dot.pass { background: var(--green); box-shadow: 0 0 8px var(--green-glow); }
-        .seal-card .verify-dot.fail { background: var(--red); box-shadow: 0 0 8px rgba(255,107,107,0.4); }
-        .seal-card .verify-dot.checking { background: var(--gold); box-shadow: 0 0 8px rgba(240,192,64,0.4); animation: pulse 1s ease-in-out infinite; }
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-
-        .seal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
-        .seal-sequence { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted); font-weight: 600; letter-spacing: 2px; }
-        .seal-id { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-muted); opacity: 0.5; }
-        .quadrant-badge { padding: 5px 12px; border-radius: 100px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
-        .quadrant-badge.q1 { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,212,170,0.3); }
-        .quadrant-badge.q2 { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(240,192,64,0.3); }
-        .quadrant-badge.q3 { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(78,205,196,0.3); }
-        .quadrant-badge.q4 { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(162,155,254,0.3); }
-
-        .seal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
-        .seal-field { display: flex; flex-direction: column; gap: 2px; }
-        .seal-field-label { font-size: 9px; color: var(--text-muted); font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
-        .seal-field-value { font-size: 12px; color: var(--text-primary); font-weight: 500; }
-        .seal-field-value.mono { font-family: 'JetBrains Mono', monospace; font-size: 10px; word-break: break-all; color: var(--text-secondary); }
-        .seal-field-value.did { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--blue); word-break: break-all; }
-
-        .proof-section { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
-        .proof-signature { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--purple); word-break: break-all; background: rgba(162,155,254,0.04); padding: 8px 12px; border-radius: 8px; margin-top: 4px; }
-
-        .dag-branch { margin-left: 20px; padding: 10px 14px; background: var(--bg-card-hover); border-left: 2px solid var(--border-accent); border-radius: 0 8px 8px 0; margin-top: 6px; font-size: 11px; }
-
-        /* ── Summary ── */
-        .chain-summary { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin-top: 36px; }
-        .chain-summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .vocab-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-        .vocab-tag { padding: 4px 8px; border-radius: 6px; background: var(--green-dim); color: var(--green); font-size: 10px; font-family: 'JetBrains Mono', monospace; }
-
-        /* ── Loading ── */
-        .loading-state { text-align: center; padding: 60px; color: var(--text-muted); }
-        .loading-spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 14px; }
-
-        /* ── Responsive ── */
-        @media (max-width: 900px) { .stats-row { grid-template-columns: repeat(2, 1fr); } .seal-body { grid-template-columns: 1fr; } .header h1 { font-size: 30px; } .container { padding: 20px 14px; } .chain-summary-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 500px) { .stats-row { grid-template-columns: 1fr; } .header h1 { font-size: 24px; } .toolbar { flex-direction: column; align-items: center; } .btn { width: 100%; justify-content: center; } }
+        @media (max-width: 900px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+            .detail-card:nth-child(odd) {
+                border-right: none;
+            }
+            .status-stats {
+                gap: 12px;
+            }
+            .stat .num {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="bg-orb bg-orb-1"></div>
-    <div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div>
-
     <div class="container">
-        <div class="header">
-            <div class="header-badge">W3C VSC Community Group</div>
-            <h1>VSC Event Matrix</h1>
-            <div class="subtitle">Live Verification Dashboard · sirraya.org</div>
-        </div>
-
-        <!-- Toolbar -->
-        <div class="toolbar">
-            <button class="btn btn-primary" id="btnAutoLoad" onclick="autoLoadChain()">
-                <span class="spinner"></span><span class="btn-text">◈ Auto-Load Latest Chain</span>
-            </button>
-            <button class="btn btn-outline" id="btnUpload" onclick="document.getElementById('fileInput').click()">
-                📂 Upload Chain JSON
-            </button>
-            <button class="btn btn-purple" id="btnVerify" onclick="runLiveVerification()" disabled>
-                <span class="spinner"></span><span class="btn-text">🔒 Verify Against Live DIDs</span>
-            </button>
-        </div>
-        <input type="file" id="fileInput" accept=".json" onchange="handleFileUpload(event)">
-
-        <!-- Verification Banner -->
-        <div class="verify-banner" id="verifyBanner"></div>
-
-        <!-- Stats -->
-        <div class="stats-row" id="statsRow">
-            <div class="stat-card green"><div class="stat-value" id="statSeals">—</div><div class="stat-label">Total SEALs</div></div>
-            <div class="stat-card gold"><div class="stat-value" id="statJurisdictions">—</div><div class="stat-label">Jurisdictions</div></div>
-            <div class="stat-card blue"><div class="stat-value" id="statQuadrants">—</div><div class="stat-label">Quadrants</div></div>
-            <div class="stat-card purple"><div class="stat-value" id="statVocabularies">—</div><div class="stat-label">Vocabularies</div></div>
-        </div>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-logo">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <rect x="4" y="20" width="40" height="8" rx="4" fill="#4ade80" opacity="0.9"/>
+                    <rect x="8" y="12" width="32" height="8" rx="4" fill="#38bdf8" opacity="0.7"/>
+                    <rect x="12" y="28" width="24" height="8" rx="4" fill="#a78bfa" opacity="0.6"/>
+                    <circle cx="24" cy="24" r="3" fill="#fff"/>
+                </svg>
+                <h1>Terra-to-Table</h1>
+            </div>
+            <p class="subtitle">VSC Verifiable Supply Chain · Cryptographic Verification</p>
+        </header>
 
         <!-- Upload Zone -->
-        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
-            <div class="upload-icon">◈</div>
-            <div class="upload-text">Drop Chain JSON File Here</div>
-            <div class="upload-hint">or click to browse · Auto-loads latest on page open</div>
+        <div class="upload-zone" id="uploadZone">
+            <input type="file" id="fileInput" accept=".json">
+            <div class="upload-prompt">
+                <div class="upload-icon">📂</div>
+                <div class="upload-text">Drop VSC Chain JSON here or click to browse</div>
+                <div class="upload-hint">Supports linearSeals + dagBranches structure with Ed25519Signature2020 proofs</div>
+            </div>
+            <div class="file-info">
+                <span>✅</span>
+                <span class="file-name" id="fileName"></span>
+                <button class="clear-btn" id="clearBtn">Clear</button>
+            </div>
         </div>
 
-        <!-- Results -->
-        <div id="results">
-            <div class="loading-state" id="initialLoader">
-                <div class="loading-spinner"></div>
-                <div>Loading latest chain…</div>
+        <!-- Status Banner -->
+        <div class="status-banner" id="statusBanner">
+            <div class="status-dot"></div>
+            <div class="status-info">
+                <div class="big" id="statusBig">Chain Loaded</div>
+                <div class="small" id="statusSmall"></div>
             </div>
+            <div class="status-stats" id="statusStats"></div>
+            <button class="verify-btn" id="verifyBtn" onclick="verifyAllSeals()">
+                <span class="spinner"></span>
+                <span class="btn-text">🔐 Verify All Signatures</span>
+            </button>
+        </div>
+
+        <!-- Chain Bar -->
+        <div class="chain-bar" id="chainBar">
+            <span>🔗 Chain:</span>
+            <span class="chain-id" id="chainIdDisplay"></span>
+            <span class="badge" id="badgeProduct"></span>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs" id="tabs">
+            <button class="tab active" data-view="linear">Linear Chain</button>
+            <button class="tab" data-view="dag">DAG Attestations</button>
+            <button class="tab" data-view="all">Combined View</button>
+        </div>
+
+        <!-- Visualization -->
+        <div class="viz-container" id="vizContainer">
+            <svg id="mainSvg" viewBox="0 0 1400 600" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+
+        <!-- Detail Panel -->
+        <div class="detail-panel" id="detailPanel">
+            <div class="detail-header">
+                <div>
+                    <h3 id="detailTitle">Select a SEAL</h3>
+                    <span class="seal-id" id="detailId"></span>
+                </div>
+                <span class="verify-status pending" id="detailVerifyStatus">⏳ Pending</span>
+            </div>
+            <div class="detail-grid" id="detailGrid"></div>
         </div>
     </div>
 
+    <!-- noble-ed25519 for real Ed25519 verification -->
+    <script type="module">
+        import { verify } from 'https://esm.sh/@noble/ed25519@2.1.0';
+        window.ed25519Verify = verify;
+    </script>
+
     <script>
-        const DOMAIN = 'sirraya.org';
-        let currentChainData = null;
-        let currentSeals = [];
+        // ──────────────────────────────────────────────
+        // STATE
+        // ──────────────────────────────────────────────
+        let chainData = null;
+        let linearSeals = [];
+        let dagBranches = {};
+        let allSeals = [];
+        let currentView = 'linear';
+        let selectedSeal = null;
+        let verificationInProgress = false;
+        const actorColors = [
+            '#4ade80', '#38bdf8', '#a78bfa', '#f59e0b', '#fb7185',
+            '#34d399', '#60a5fa', '#c084fc', '#fbbf24', '#f472b6',
+            '#22c55e', '#3b82f6', '#8b5cf6', '#eab308', '#ec4899'
+        ];
+        let actorColorMap = {};
+        // Cache for DID documents
+        const didCache = {};
 
-        // ── Auto-load on page open ──
-        window.addEventListener('DOMContentLoaded', () => {
-            // Try to auto-load from a default path
-            // Since we can't scan the filesystem from a browser, show the upload zone
-            document.getElementById('initialLoader').style.display = 'none';
-            document.getElementById('results').innerHTML = `
-                <div style="text-align:center;padding:60px 20px;">
-                    <div style="font-size:64px;margin-bottom:16px;opacity:0.5;">◈</div>
-                    <h2 style="color:var(--text-secondary);font-weight:600;margin-bottom:8px;">Ready to Verify</h2>
-                    <p style="color:var(--text-muted);font-size:13px;">Click <strong>Auto-Load</strong> if you have a chain file in the same directory,<br>or <strong>Upload</strong> a VSC chain JSON file to begin.</p>
-                </div>`;
-        });
-
-        // ── Drag and Drop ──
+        // ──────────────────────────────────────────────
+        // FILE UPLOAD HANDLING
+        // ──────────────────────────────────────────────
         const uploadZone = document.getElementById('uploadZone');
-        uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
-        uploadZone.addEventListener('dragleave', () => { uploadZone.classList.remove('drag-over'); });
+        const fileInput = document.getElementById('fileInput');
+        const clearBtn = document.getElementById('clearBtn');
+
+        uploadZone.addEventListener('click', (e) => {
+            if (e.target === clearBtn) return;
+            fileInput.click();
+        });
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
         uploadZone.addEventListener('drop', (e) => {
             e.preventDefault();
-            uploadZone.classList.remove('drag-over');
+            uploadZone.classList.remove('dragover');
             const file = e.dataTransfer.files[0];
-            if (file) processChainFile(file);
+            if (file) processFile(file);
+        });
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file) processFile(file);
+        });
+        clearBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            resetAll();
         });
 
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (file) processChainFile(file);
-        }
-
-        function autoLoadChain() {
-            const btn = document.getElementById('btnAutoLoad');
-            btn.classList.add('loading');
-            // Create a file input to let user select their chain file
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = function(e) {
-                const file = e.target.files[0];
-                if (file) processChainFile(file);
-                btn.classList.remove('loading');
-            };
-            input.oncancel = function() { btn.classList.remove('loading'); };
-            input.click();
-        }
-
-        function processChainFile(file) {
+        function processFile(file) {
+            if (!file.name.endsWith('.json')) {
+                alert('Please upload a .json file');
+                return;
+            }
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = (e) => {
                 try {
                     const data = JSON.parse(e.target.result);
-                    currentChainData = data;
-                    currentSeals = data.linearSeals || data.seals || [];
-                    renderDashboard(data);
-                    document.getElementById('btnVerify').disabled = false;
-                    document.getElementById('uploadZone').style.display = 'none';
-                    document.getElementById('verifyBanner').classList.remove('show');
+                    loadChainData(data);
+                    uploadZone.classList.add('loaded');
+                    document.getElementById('fileName').textContent = file.name;
                 } catch (err) {
-                    showError('Invalid JSON file. Please load a valid VSC chain file.');
+                    alert('Invalid JSON file: ' + err.message);
                 }
             };
             reader.readAsText(file);
         }
 
-        // ── Render ──
-        function renderDashboard(data) {
-            const seals = currentSeals;
-            const dagBranches = data.dagBranches || {};
-            const chainId = data.chainId || 'N/A';
-
-            if (seals.length === 0) {
-                document.getElementById('results').innerHTML = `<div style="text-align:center;padding:60px;"><p style="color:var(--text-muted);">Empty chain file.</p></div>`;
-                return;
-            }
-
-            // Stats
-            const jurisdictions = new Set(seals.map(s => s.eventVector?.where?.jurisdiction).filter(Boolean));
-            const quadrants = new Set(seals.map(s => getQuadrant(s)).filter(Boolean));
-            const vocabularies = new Set();
-            const collectVocabs = (s) => {
-                const ext = s.extensions?.["+Dn"] || {};
-                Object.values(ext).forEach(v => Object.keys(v).forEach(urn => vocabularies.add(urn)));
-            };
-            seals.forEach(collectVocabs);
-            Object.values(dagBranches).forEach(branches => branches.forEach(collectVocabs));
-
-            document.getElementById('statSeals').textContent = seals.length + Object.values(dagBranches).flat().length;
-            document.getElementById('statJurisdictions').textContent = jurisdictions.size;
-            document.getElementById('statQuadrants').textContent = quadrants.size;
-            document.getElementById('statVocabularies').textContent = vocabularies.size;
-
-            // Build timeline
-            let html = `<div class="section-title"><span class="dot"></span>Custody Chain Timeline</div><div class="timeline">`;
-
-            seals.forEach((seal, i) => {
-                const ev = seal.eventVector || {};
-                const what = ev.what || {};
-                const when = ev.when || {};
-                const where = ev.where || {};
-                const who = ev.who || {};
-                const how = ev.how || {};
-                const proof = seal.proof || {};
-                const q = getQuadrant(seal);
-                const qLabel = getQuadrantLabel(q);
-                const seq = seal.chainOfCustody?.sequenceNumber || (i + 1);
-
-                html += `
-                <div class="seal-card ${q}" style="animation-delay:${i*0.06}s" id="sealCard${i}">
-                    <div class="verify-dot" id="verifyDot${i}"></div>
-                    <div class="seal-header">
-                        <div>
-                            <div class="seal-sequence">SEAL ${String(seq).padStart(3,'0')}</div>
-                            <div class="seal-id">${(seal.id||'').substring(0,42)}…</div>
-                        </div>
-                        <span class="quadrant-badge ${q}">${qLabel}</span>
-                    </div>
-                    <div class="seal-body">
-                        <div class="seal-field"><span class="seal-field-label">Business Step</span><span class="seal-field-value">${how.business_step||'—'}</span></div>
-                        <div class="seal-field"><span class="seal-field-label">Disposition</span><span class="seal-field-value">${how.disposition||'—'}</span></div>
-                        <div class="seal-field"><span class="seal-field-label">Product</span><span class="seal-field-value">${what.description||'—'}</span></div>
-                        <div class="seal-field"><span class="seal-field-label">Lot / Batch</span><span class="seal-field-value mono">${what.batch_or_lot||'—'}</span></div>
-                        <div class="seal-field"><span class="seal-field-label">Jurisdiction</span><span class="seal-field-value">${where.jurisdiction||'—'}</span></div>
-                        <div class="seal-field"><span class="seal-field-label">Quantity</span><span class="seal-field-value">${what.quantity||'—'} ${what.quantity_unit||''}</span></div>
-                        <div class="seal-field" style="grid-column:1/-1;"><span class="seal-field-label">Actor</span><span class="seal-field-value did">${who.actor_did||'—'}</span></div>
-                    </div>
-                    <div class="proof-section">
-                        <span class="seal-field-label">Ed25519 Proof</span>
-                        <div class="proof-signature">${(proof.proof_value||proof.proofValue||'—').substring(0,75)}…</div>
-                    </div>`;
-
-                const branches = dagBranches[seal.id] || [];
-                branches.forEach(b => {
-                    html += `<div class="dag-branch"><span style="color:var(--text-muted);font-weight:700;font-size:10px;letter-spacing:1px;">DAG</span> <span style="color:var(--text-secondary);">${b.eventVector?.how?.business_step||'attestation'}</span> <span style="color:var(--text-muted);">· ${b.eventVector?.who?.actor_role||''}</span></div>`;
-                });
-
-                html += `</div>`;
-            });
-
-            html += `</div>`;
-
-            // Summary
-            html += `
-            <div class="chain-summary">
-                <div class="chain-summary-grid">
-                    <div class="seal-field"><span class="seal-field-label">Chain ID</span><span class="seal-field-value mono">${chainId}</span></div>
-                    <div class="seal-field"><span class="seal-field-label">Domain</span><span class="seal-field-value">${DOMAIN}</span></div>
-                    <div class="seal-field"><span class="seal-field-label">Jurisdiction Path</span><span class="seal-field-value">${[...jurisdictions].join(' → ')}</span></div>
-                    <div class="seal-field"><span class="seal-field-label">Quadrant Path</span><span class="seal-field-value">${[...quadrants].join(' → ')}</span></div>
-                </div>
-                ${vocabularies.size > 0 ? `<div style="margin-top:16px;"><span class="seal-field-label">+Dn Vocabularies</span><div class="vocab-tags">${[...vocabularies].map(v => `<span class="vocab-tag">${v.split(':').pop()}</span>`).join('')}</div></div>` : ''}
-            </div>`;
-
-            document.getElementById('results').innerHTML = html;
+        function resetAll() {
+            chainData = null;
+            linearSeals = [];
+            dagBranches = {};
+            allSeals = [];
+            selectedSeal = null;
+            actorColorMap = {};
+            verificationInProgress = false;
+            uploadZone.classList.remove('loaded');
+            fileInput.value = '';
+            document.getElementById('fileName').textContent = '';
+            document.getElementById('statusBanner').classList.remove('visible', 'verified', 'verifying', 'failed');
+            document.getElementById('chainBar').classList.remove('visible');
+            document.getElementById('tabs').classList.remove('visible');
+            document.getElementById('vizContainer').classList.remove('visible');
+            document.getElementById('detailPanel').classList.remove('visible');
+            document.getElementById('verifyBtn').classList.remove('visible');
+            document.getElementById('mainSvg').innerHTML = '';
         }
 
-        // ── Live Verification ──
-        async function runLiveVerification() {
-            if (!currentSeals.length) return;
+        // ──────────────────────────────────────────────
+        // CHAIN DATA PARSING
+        // ──────────────────────────────────────────────
+        function loadChainData(data) {
+            chainData = data;
+            linearSeals = [];
+            dagBranches = {};
+            allSeals = [];
+            actorColorMap = {};
 
-            const btn = document.getElementById('btnVerify');
-            const banner = document.getElementById('verifyBanner');
-            btn.classList.add('loading');
-            btn.disabled = true;
-            banner.className = 'verify-banner show loading-banner';
-            banner.innerHTML = '<span style="font-size:18px;">⏳</span> Verifying against live DIDs at sirraya.org…';
+            if (data.linearSeals && Array.isArray(data.linearSeals)) {
+                linearSeals = data.linearSeals.map((s, i) => parseSeal(s, i, 'linear'));
+            }
 
-            // Reset dots
-            currentSeals.forEach((_, i) => {
-                const dot = document.getElementById(`verifyDot${i}`);
-                if (dot) { dot.className = 'verify-dot show checking'; }
-            });
-
-            let verified = 0;
-            let failed = 0;
-            const results = [];
-
-            for (let i = 0; i < currentSeals.length; i++) {
-                const seal = currentSeals[i];
-                const did = seal.eventVector?.who?.actor_did;
-                const dot = document.getElementById(`verifyDot${i}`);
-
-                if (!did) {
-                    failed++;
-                    if (dot) dot.className = 'verify-dot show fail';
-                    results.push({ index: i, valid: false, error: 'No DID' });
-                    continue;
-                }
-
-                try {
-                    const didPath = did.replace('did:web:', '').replace(/:/g, '/');
-                    const url = `https://${didPath}/did.json`;
-
-                    const resp = await fetch(url);
-                    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-
-                    const didDoc = await resp.json();
-                    const pubKeyMultibase = didDoc?.verificationMethod?.[0]?.publicKeyMultibase;
-                    if (!pubKeyMultibase) throw new Error('No public key');
-
-                    // Extract the raw public key bytes
-                    let keyHex = pubKeyMultibase;
-                    if (keyHex.startsWith('z')) keyHex = keyHex.substring(1);
-                    if (keyHex.startsWith('ed01')) keyHex = keyHex.substring(4);
-
-                    // Build payload (JCS canonicalization — sort keys)
-                    const payloadObj = {
-                        id: seal.id,
-                        sealVersion: seal.sealVersion,
-                        sealTimestamp: seal.sealTimestamp,
-                        eventVector: seal.eventVector,
-                        extensions: seal.extensions || {"+Dn": {}}
-                    };
-                    const payloadStr = JSON.stringify(payloadObj, Object.keys(payloadObj).sort());
-                    const payloadBytes = new TextEncoder().encode(payloadStr);
-
-                    // Import key
-                    const keyBytes = hexToBytes(keyHex);
-                    const cryptoKey = await crypto.subtle.importKey('raw', keyBytes, { name: 'Ed25519' }, false, ['verify']);
-
-                    // Get signature
-                    const sigHex = seal.proof?.proof_value || seal.proof?.proofValue || '';
-                    const sigBytes = hexToBytes(sigHex);
-
-                    // Verify
-                    const isValid = await crypto.subtle.verify({ name: 'Ed25519' }, cryptoKey, sigBytes, payloadBytes);
-
-                    if (isValid) {
-                        verified++;
-                        if (dot) dot.className = 'verify-dot show pass';
-                        results.push({ index: i, valid: true });
-                    } else {
-                        failed++;
-                        if (dot) dot.className = 'verify-dot show fail';
-                        results.push({ index: i, valid: false, error: 'Invalid signature' });
+            if (data.dagBranches && typeof data.dagBranches === 'object') {
+                for (const [parentId, branches] of Object.entries(data.dagBranches)) {
+                    if (Array.isArray(branches)) {
+                        dagBranches[parentId] = branches.map((s, i) => parseSeal(s, i, 'dag', parentId));
                     }
-                } catch (err) {
-                    failed++;
-                    if (dot) dot.className = 'verify-dot show fail';
-                    results.push({ index: i, valid: false, error: err.message });
                 }
+            }
+
+            allSeals = [...linearSeals];
+            for (const branches of Object.values(dagBranches)) {
+                allSeals.push(...branches);
+            }
+
+            const firstSeal = linearSeals[0];
+            const productInfo = firstSeal ? deriveProductInfo(firstSeal) : { name: 'Unknown', lot: 'N/A',
+            qty: 'N/A' };
+
+            updateStatusBanner(productInfo);
+            updateChainBar(data, productInfo);
+            document.getElementById('statusBanner').classList.add('visible');
+            document.getElementById('chainBar').classList.add('visible');
+            document.getElementById('tabs').classList.add('visible');
+            document.getElementById('vizContainer').classList.add('visible');
+            document.getElementById('verifyBtn').classList.add('visible');
+            document.getElementById('verifyBtn').disabled = false;
+            document.getElementById('verifyBtn').classList.remove('loading');
+
+            currentView = 'linear';
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-view="linear"]').classList.add('active');
+            selectedSeal = null;
+            document.getElementById('detailPanel').classList.remove('visible');
+            renderSVG();
+        }
+
+        function parseSeal(s, index, type, parentId) {
+            const ev = s.eventVector || {};
+            const who = ev.who || {};
+            const how = ev.how || {};
+            const where = ev.where || {};
+            const when = ev.when || {};
+            const proof = s.proof || {};
+            const coc = s.chainOfCustody || {};
+
+            const actor = who.actor_did ? who.actor_did.split(':').pop().split('/').pop() : 'unknown';
+            if (!actorColorMap[actor]) {
+                actorColorMap[actor] = actorColors[Object.keys(actorColorMap).length % actorColors.length];
+            }
+
+            return {
+                id: s.id || '',
+                seq: coc.sequenceNumber || (type === 'linear' ? index + 1 : 0),
+                step: how.business_step || 'unknown',
+                actor: actor,
+                role: who.actor_role || actor,
+                actorDid: who.actor_did || '',
+                assertionMethod: who.assertion_method || proof.verification_method || '',
+                location: where.business_location?.name || where.read_point?.name || 'Unknown',
+                time: when.event_time || 'N/A',
+                disposition: how.disposition || 'N/A',
+                color: actorColorMap[actor],
+                type: type,
+                parentId: parentId || null,
+                proofValue: proof.proof_value || proof.proofValue || '',
+                verificationMethod: proof.verification_method || '',
+                proofCreated: proof.created || '',
+                verified: null, // null = pending, true = verified, false = failed
+                verifyError: null,
+                raw: s,
+            };
+        }
+
+        function deriveProductInfo(seal) {
+            const what = seal.raw?.eventVector?.what || {};
+            const desc = what.description || '';
+            const lot = what.batch_or_lot || 'N/A';
+            const qty = what.quantity ? `${what.quantity} ${what.quantity_unit || ''}` : 'N/A';
+            return { name: desc, lot, qty };
+        }
+
+        function updateStatusBanner(productInfo) {
+            const totalLinear = linearSeals.length;
+            const totalDag = allSeals.length - totalLinear;
+            document.getElementById('statusBig').textContent =
+                `Chain Loaded — ${allSeals.length} SEALs ready for verification`;
+            document.getElementById('statusSmall').textContent =
+                `Click "Verify All Signatures" to cryptographically verify each Ed25519Signature2020`;
+            document.getElementById('statusStats').innerHTML = `
+            <div class="stat"><div class="num">${totalLinear}</div><div class="label">Linear</div></div>
+            <div class="stat"><div class="num">${totalDag}</div><div class="label">Attest/Sensor</div></div>
+            <div class="stat"><div class="num">${productInfo.qty}</div><div class="label">Quantity</div></div>
+            <div class="stat"><div class="num">${Object.keys(actorColorMap).length}</div><div class="label">Actors</div></div>
+          `;
+        }
+
+        function updateChainBar(data, productInfo) {
+            document.getElementById('chainIdDisplay').textContent = data.chainId || 'N/A';
+            const badge = document.getElementById('badgeProduct');
+            badge.innerHTML = `<span class="icon"></span> ${productInfo.lot} · ${productInfo.name}`;
+        }
+
+        // ──────────────────────────────────────────────
+        // CRYPTOGRAPHIC VERIFICATION
+        // ──────────────────────────────────────────────
+        async function resolveDidWeb(didUrl) {
+            // did:web:sirraya.org:actors:farmer -> https://sirraya.org/actors/farmer/did.json
+            if (didCache[didUrl]) return didCache[didUrl];
+
+            const didPath = didUrl.replace('did:web:', '').replace(/:/g, '/');
+            const url = `https://${didPath}/did.json`;
+
+            try {
+                const resp = await fetch(url, {
+                    headers: { 'Accept': 'application/json' },
+                    mode: 'cors'
+                });
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                const doc = await resp.json();
+                didCache[didUrl] = doc;
+                return doc;
+            } catch (err) {
+                console.error(`Failed to resolve DID ${didUrl}:`, err);
+                throw new Error(`DID resolution failed: ${err.message}`);
+            }
+        }
+
+        function extractPublicKeyBytes(didDoc, keyId) {
+            const vm = didDoc.verificationMethod || [];
+            let keyVm = null;
+
+            // Find the specific verification method
+            if (keyId) {
+                const fullKeyId = keyId.includes('#') ? keyId : `${didDoc.id || ''}#${keyId}`;
+                keyVm = vm.find(m => m.id === fullKeyId || m.id === keyId || m.id?.endsWith(keyId));
+            }
+            if (!keyVm && vm.length > 0) keyVm = vm[0];
+            if (!keyVm) throw new Error('No verification method found in DID document');
+
+            const pubKeyMb = keyVm.publicKeyMultibase || keyVm.publicKeyBase58 || '';
+            if (!pubKeyMb) throw new Error('No public key found in verification method');
+
+            // Handle multibase z + multicodec ed01 (Ed25519)
+            let keyHex = pubKeyMb;
+            if (keyHex.startsWith('z')) keyHex = keyHex.slice(1);
+            // Check for multicodec prefix for ed25519-pub (0xed01 = ed01 in hex)
+            if (keyHex.startsWith('ed01') || keyHex.startsWith('ED01')) keyHex = keyHex.slice(4);
+
+            // Must be 64 hex chars = 32 bytes
+            if (keyHex.length !== 64) {
+                throw new Error(`Invalid Ed25519 public key length: ${keyHex.length} hex chars (expected 64)`);
+            }
+
+            return new Uint8Array(keyHex.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+        }
+
+        function buildSigningPayload(seal) {
+            const s = seal.raw;
+            const payload = {
+                id: s.id,
+                sealVersion: s.sealVersion,
+                sealTimestamp: s.sealTimestamp,
+                eventVector: s.eventVector,
+                extensions: s.extensions || { "+Dn": {} }
+            };
+            // JCS canonicalize: sorted keys, no whitespace
+            return new TextEncoder().encode(JSON.stringify(payload, Object.keys(payload).sort(), 0));
+        }
+
+        async function verifySeal(seal) {
+            try {
+                const didUrl = seal.actorDid || seal.verificationMethod?.split('#')[0];
+                if (!didUrl) throw new Error('No DID found for actor');
+
+                // Resolve DID
+                const didDoc = await resolveDidWeb(didUrl);
+
+                // Extract public key
+                const keyId = seal.assertionMethod?.split('#').pop() || seal.verificationMethod?.split('#').pop() ||
+                    'key-1';
+                const publicKeyBytes = extractPublicKeyBytes(didDoc, keyId);
+
+                // Get signature bytes
+                const proofValue = seal.proofValue;
+                if (!proofValue) throw new Error('No proof value');
+                const signatureBytes = new Uint8Array(proofValue.match(/.{1,2}/g).map(b => parseInt(b, 16)));
+
+                // Build payload
+                const message = buildSigningPayload(seal);
+
+                // Verify using noble-ed25519
+                const isValid = await window.ed25519Verify(signatureBytes, message, publicKeyBytes);
+
+                seal.verified = isValid;
+                seal.verifyError = isValid ? null : 'Signature does not match payload';
+                return isValid;
+            } catch (err) {
+                seal.verified = false;
+                seal.verifyError = err.message;
+                return false;
+            }
+        }
+
+        async function verifyAllSeals() {
+            if (verificationInProgress) return;
+            verificationInProgress = true;
+
+            const banner = document.getElementById('statusBanner');
+            const btn = document.getElementById('verifyBtn');
+            banner.classList.remove('verified', 'failed');
+            banner.classList.add('verifying');
+            btn.disabled = true;
+            btn.classList.add('loading');
+            document.getElementById('statusBig').textContent = 'Verifying signatures...';
+            document.getElementById('statusSmall').textContent =
+                'Resolving DID:Web documents and checking Ed25519 proofs';
+
+            let passed = 0;
+            let failed = 0;
+
+            for (let i = 0; i < allSeals.length; i++) {
+                const seal = allSeals[i];
+                document.getElementById('statusSmall').textContent =
+                    `Verifying SEAL ${i + 1}/${allSeals.length}: ${seal.step} (${seal.actor})...`;
+                try {
+                    const ok = await verifySeal(seal);
+                    if (ok) passed++;
+                    else failed++;
+                } catch (e) {
+                    failed++;
+                }
+                // Small delay for UX
+                await new Promise(r => setTimeout(r, 100));
             }
 
             // Update banner
-            btn.classList.remove('loading');
+            banner.classList.remove('verifying');
             btn.disabled = false;
-            if (failed === 0) {
-                banner.className = 'verify-banner show success';
-                banner.innerHTML = `<span style="font-size:18px;">✓</span> ALL ${verified} SEALs verified against live DIDs at ${DOMAIN} — DIDs synced`;
-            } else {
-                banner.className = 'verify-banner show fail';
-                banner.innerHTML = `<span style="font-size:18px;">✗</span> ${verified} verified · ${failed} FAILED — Check DIDs at ${DOMAIN}`;
+            btn.classList.remove('loading');
+            document.getElementById('statusBig').textContent =
+                failed === 0 ?
+                `✓ All ${passed} signatures verified` :
+                `⚠ ${passed}/${allSeals.length} verified, ${failed} failed`;
+            document.getElementById('statusSmall').textContent =
+                failed === 0 ?
+                'Decentralized trust confirmed — every SEAL is cryptographically authentic' :
+                `${failed} SEAL(s) have invalid signatures or unresolvable DIDs`;
+            if (failed > 0) banner.classList.add('failed');
+            else banner.classList.add('verified');
+
+            // Update stats
+            document.getElementById('statusStats').innerHTML = `
+            <div class="stat"><div class="num" style="color:var(--accent)">${passed}</div><div class="label">Verified</div></div>
+            <div class="stat"><div class="num" style="color:${failed > 0 ? 'var(--fail)' : 'var(--text2)'}">${failed}</div><div class="label">Failed</div></div>
+            <div class="stat"><div class="num">${allSeals.length}</div><div class="label">Total</div></div>
+          `;
+
+            // Re-render
+            renderSVG();
+            if (selectedSeal) showDetail(selectedSeal);
+        }
+
+        // ──────────────────────────────────────────────
+        // DAG LAYOUT ENGINE
+        // ──────────────────────────────────────────────
+        function computeLayout() {
+            const svgWidth = 1400;
+            const padding = 100;
+            const linearY = 180;
+            const totalLinear = linearSeals.length;
+
+            linearSeals.forEach((s, i) => {
+                s.layoutX = padding + (i / Math.max(totalLinear - 1, 1)) * (svgWidth - 2 * padding);
+                s.layoutY = linearY;
+            });
+
+            const dagBaseY = linearY + 130;
+            const dagRowHeight = 55;
+            const dagColWidth = 150;
+            const maxDagPerRow = 8;
+
+            for (const [parentId, seals] of Object.entries(dagBranches)) {
+                const parentSeal = linearSeals.find(ls => ls.id === parentId);
+                const parentX = parentSeal ? parentSeal.layoutX : padding;
+                const totalDag = seals.length;
+                const totalWidth = Math.min(totalDag, maxDagPerRow) * dagColWidth;
+                const startX = parentX - totalWidth / 2 + dagColWidth / 2;
+
+                seals.forEach((ds, i) => {
+                    const row = Math.floor(i / maxDagPerRow);
+                    const col = i % maxDagPerRow;
+                    ds.layoutX = startX + col * dagColWidth;
+                    ds.layoutY = dagBaseY + row * dagRowHeight;
+                    ds.parentLayoutX = parentX;
+                    ds.parentLayoutY = linearY;
+                });
             }
         }
 
-        function hexToBytes(hex) {
-            const bytes = new Uint8Array(hex.length / 2);
-            for (let i = 0; i < hex.length; i += 2) bytes[i/2] = parseInt(hex.substring(i,i+2), 16);
-            return bytes;
+        // ──────────────────────────────────────────────
+        // RENDER SVG
+        // ──────────────────────────────────────────────
+        function renderSVG() {
+            if (!chainData) return;
+            computeLayout();
+
+            const svg = document.getElementById('mainSvg');
+            let maxDagY = 180;
+            for (const seals of Object.values(dagBranches)) {
+                for (const ds of seals) {
+                    if (ds.layoutY > maxDagY) maxDagY = ds.layoutY;
+                }
+            }
+            const svgHeight = Math.max(500, maxDagY + 120);
+            svg.setAttribute('viewBox', `0 0 1400 ${svgHeight}`);
+            svg.innerHTML = '';
+
+            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+            defs.innerHTML = `
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="shadow">
+              <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.4"/>
+            </filter>
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#13131a"/>
+              <stop offset="100%" stop-color="#0a0a0f"/>
+            </linearGradient>
+            <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#4ade80" opacity="0.5"/>
+            </marker>
+            <marker id="arrowDag" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#8888a0" opacity="0.4"/>
+            </marker>
+          `;
+            svg.appendChild(defs);
+
+            const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            bg.setAttribute('width', '1400');
+            bg.setAttribute('height', svgHeight);
+            bg.setAttribute('fill', 'url(#bgGrad)');
+            svg.appendChild(bg);
+
+            for (let x = 0; x < 1400; x += 100) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', x);
+                line.setAttribute('y1', 0);
+                line.setAttribute('x2', x);
+                line.setAttribute('y2', svgHeight);
+                line.setAttribute('stroke', '#1e1e2e');
+                line.setAttribute('stroke-width', '0.5');
+                svg.appendChild(line);
+            }
+
+            if (currentView === 'dag' || currentView === 'all') {
+                for (const [parentId, seals] of Object.entries(dagBranches)) {
+                    const parentSeal = linearSeals.find(ls => ls.id === parentId);
+                    if (!parentSeal) continue;
+                    seals.forEach(ds => {
+                        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                        line.setAttribute('x1', parentSeal.layoutX);
+                        line.setAttribute('y1', parentSeal.layoutY + 35);
+                        line.setAttribute('x2', ds.layoutX);
+                        line.setAttribute('y2', ds.layoutY);
+                        line.setAttribute('stroke', ds.color);
+                        line.setAttribute('stroke-width', '1.2');
+                        line.setAttribute('stroke-dasharray', '5,5');
+                        line.setAttribute('opacity', '0.3');
+                        line.setAttribute('marker-end', 'url(#arrowDag)');
+                        svg.appendChild(line);
+                    });
+                }
+            }
+
+            if (currentView === 'linear' || currentView === 'all') {
+                for (let i = 0; i < linearSeals.length - 1; i++) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', linearSeals[i].layoutX + 55);
+                    line.setAttribute('y1', linearSeals[i].layoutY + 22);
+                    line.setAttribute('x2', linearSeals[i + 1].layoutX - 55);
+                    line.setAttribute('y2', linearSeals[i + 1].layoutY + 22);
+                    line.setAttribute('stroke', '#4ade80');
+                    line.setAttribute('stroke-width', '2');
+                    line.setAttribute('stroke-dasharray', '8,5');
+                    line.setAttribute('opacity', '0.35');
+                    line.setAttribute('marker-end', 'url(#arrowGreen)');
+                    svg.appendChild(line);
+                }
+            }
+
+            if (currentView === 'linear' || currentView === 'all') {
+                linearSeals.forEach(s => renderNode(svg, s, true));
+            }
+
+            if (currentView === 'dag' || currentView === 'all') {
+                for (const seals of Object.values(dagBranches)) {
+                    seals.forEach(s => renderNode(svg, s, false));
+                }
+            }
+
+            if (currentView === 'linear' || currentView === 'all') {
+                linearSeals.forEach((s, i) => {
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', s.layoutX);
+                    text.setAttribute('y', svgHeight - 20);
+                    text.setAttribute('text-anchor', 'middle');
+                    text.setAttribute('fill', '#555568');
+                    text.setAttribute('font-size', '10');
+                    text.setAttribute('font-family', 'var(--font)');
+                    text.textContent = `#${i + 1} ${s.step}`;
+                    svg.appendChild(text);
+                });
+            }
+
+            const titleText = currentView === 'dag' ? 'DAG ATTESTATIONS & SENSOR EVENTS' :
+                currentView === 'all' ? 'COMPLETE VSC CHAIN · LINEAR + ATTESTATIONS' :
+                'LINEAR SUPPLY CHAIN · SEAL-TO-SEAL VERIFICATION';
+            const title = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            title.setAttribute('x', '700');
+            title.setAttribute('y', '32');
+            title.setAttribute('text-anchor', 'middle');
+            title.setAttribute('fill', '#e0e0e0');
+            title.setAttribute('font-size', '15');
+            title.setAttribute('font-weight', '600');
+            title.setAttribute('font-family', 'var(--font)');
+            title.setAttribute('letter-spacing', '0.04em');
+            title.textContent = titleText;
+            svg.appendChild(title);
         }
 
-        function showError(msg) {
-            document.getElementById('results').innerHTML = `<div style="text-align:center;padding:60px;color:var(--red);">${msg}</div>`;
+        function renderNode(svg, seal, isLinear) {
+            const w = isLinear ? 140 : 120;
+            const h = isLinear ? 50 : 36;
+            const x = seal.layoutX - w / 2;
+            const y = seal.layoutY - h / 2;
+            const isSelected = selectedSeal && selectedSeal.id === seal.id;
+            // Verification status color
+            const vColor = seal.verified === true ? '#4ade80' : seal.verified === false ? '#ef4444' : '#8888a0';
+
+            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            g.setAttribute('class', 'seal-node' + (isSelected ? ' selected' : ''));
+            g.setAttribute('data-id', seal.id);
+            g.addEventListener('click', () => selectSeal(seal));
+
+            const shadow = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            shadow.setAttribute('x', x + 2);
+            shadow.setAttribute('y', y + 2);
+            shadow.setAttribute('width', w);
+            shadow.setAttribute('height', h);
+            shadow.setAttribute('rx', '8');
+            shadow.setAttribute('fill', '#000');
+            shadow.setAttribute('opacity', '0.25');
+            shadow.setAttribute('filter', 'url(#shadow)');
+            g.appendChild(shadow);
+
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('class', 'node-bg');
+            rect.setAttribute('x', x);
+            rect.setAttribute('y', y);
+            rect.setAttribute('width', w);
+            rect.setAttribute('height', h);
+            rect.setAttribute('rx', '8');
+            rect.setAttribute('fill', '#1a1a28');
+            rect.setAttribute('stroke', isSelected ? '#fff' : seal.color);
+            rect.setAttribute('stroke-width', isSelected ? '2.5' : '1.5');
+            rect.setAttribute('opacity', '0.9');
+            g.appendChild(rect);
+
+            const accent = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            accent.setAttribute('x', x);
+            accent.setAttribute('y', y + 6);
+            accent.setAttribute('width', '3');
+            accent.setAttribute('height', h - 12);
+            accent.setAttribute('rx', '2');
+            accent.setAttribute('fill', seal.color);
+            g.appendChild(accent);
+
+            if (isLinear) {
+                const seq = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                seq.setAttribute('x', x + 14);
+                seq.setAttribute('y', y + h / 2 + 6);
+                seq.setAttribute('fill', seal.color);
+                seq.setAttribute('font-size', '16');
+                seq.setAttribute('font-weight', '700');
+                seq.setAttribute('font-family', 'var(--mono)');
+                seq.setAttribute('text-anchor', 'middle');
+                seq.textContent = linearSeals.indexOf(seal) + 1;
+                g.appendChild(seq);
+            }
+
+            const step = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            step.setAttribute('class', 'node-step');
+            step.setAttribute('x', x + (isLinear ? 30 : 14));
+            step.setAttribute('y', y + h / 2 + 5);
+            step.setAttribute('fill', '#e0e0e0');
+            step.setAttribute('font-size', isLinear ? '12' : '10');
+            step.setAttribute('font-weight', '600');
+            step.setAttribute('font-family', 'var(--font)');
+            step.textContent = seal.step;
+            g.appendChild(step);
+
+            // Verification indicator
+            const indicator = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            indicator.setAttribute('x', x + w - 14);
+            indicator.setAttribute('y', y + h / 2 + 5);
+            indicator.setAttribute('fill', vColor);
+            indicator.setAttribute('font-size', '12');
+            indicator.setAttribute('font-weight', '700');
+            indicator.setAttribute('text-anchor', 'middle');
+            indicator.textContent = seal.verified === true ? '✓' : seal.verified === false ? '✗' : '·';
+            g.appendChild(indicator);
+
+            svg.appendChild(g);
         }
 
-        function getQuadrant(seal) {
-            const d = seal.eventVector?.how?.disposition || '';
-            if (['created','harvested','commissioned','manufactured','declared'].includes(d)) return 'q1';
-            if (['in_transit','stored','loaded','cleared_for_export','packed','shipped'].includes(d)) return 'q2';
-            if (['received','verified','accepted','customs_cleared','cleared_for_import'].includes(d)) return 'q3';
-            if (['consumed','dispensed','destroyed','recalled','expired'].includes(d)) return 'q4';
-            return 'q2';
+        // ──────────────────────────────────────────────
+        // SELECTION & DETAILS
+        // ──────────────────────────────────────────────
+        function selectSeal(seal) {
+            selectedSeal = seal;
+            renderSVG();
+            showDetail(seal);
         }
-        function getQuadrantLabel(q) {
-            return { q1: 'Q1 · ORIGIN', q2: 'Q2 · TRANSIT', q3: 'Q3 · DESTINATION', q4: 'Q4 · TERMINAL' }[q] || 'Q2 · TRANSIT';
+
+        function showDetail(seal) {
+            const panel = document.getElementById('detailPanel');
+            panel.classList.add('visible');
+            document.getElementById('detailTitle').textContent = seal.step + ' · ' + seal.role;
+            document.getElementById('detailId').textContent = seal.id;
+
+            const statusEl = document.getElementById('detailVerifyStatus');
+            if (seal.verified === true) {
+                statusEl.textContent = '✓ Verified';
+                statusEl.className = 'verify-status pass';
+            } else if (seal.verified === false) {
+                statusEl.textContent = '✗ Failed';
+                statusEl.className = 'verify-status fail';
+            } else {
+                statusEl.textContent = '⏳ Pending';
+                statusEl.className = 'verify-status pending';
+            }
+
+            const proofClass = seal.verified === true ? 'proof-valid' : seal.verified === false ? 'proof-invalid' : '';
+            const proofShort = seal.proofValue ? seal.proofValue.substring(0, 64) + '...' : 'N/A';
+            const grid = document.getElementById('detailGrid');
+            grid.innerHTML = `
+            <div class="detail-card">
+              <div class="card-label">When</div>
+              <div class="card-value">${seal.time}</div>
+            </div>
+            <div class="detail-card">
+              <div class="card-label">Where</div>
+              <div class="card-value">${seal.location}</div>
+            </div>
+            <div class="detail-card">
+              <div class="card-label">Actor DID</div>
+              <div class="card-value mono">${seal.actorDid}</div>
+            </div>
+            <div class="detail-card">
+              <div class="card-label">Disposition</div>
+              <div class="card-value">${seal.disposition}</div>
+            </div>
+            <div class="detail-card">
+              <div class="card-label">Verification Method</div>
+              <div class="card-value mono">${seal.verificationMethod}</div>
+            </div>
+            <div class="detail-card">
+              <div class="card-label">Proof Created</div>
+              <div class="card-value">${seal.proofCreated}</div>
+            </div>
+            <div class="detail-proof ${proofClass}">
+              <div class="proof-label">Ed25519 Signature</div>
+              ${proofShort}
+              ${seal.verifyError ? `<div style="color:var(--fail);margin-top:6px;font-family:var(--font);font-size:0.75rem;">⚠ ${seal.verifyError}</div>` : ''}
+            </div>
+          `;
         }
+
+        // ──────────────────────────────────────────────
+        // VIEW SWITCHING
+        // ──────────────────────────────────────────────
+        document.getElementById('tabs').addEventListener('click', (e) => {
+            if (e.target.classList.contains('tab')) {
+                currentView = e.target.dataset.view;
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                selectedSeal = null;
+                document.getElementById('detailPanel').classList.remove('visible');
+                renderSVG();
+            }
+        });
     </script>
 </body>
 </html>
