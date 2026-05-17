@@ -8,9 +8,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:05aabda7-5fb5-4f1b-88eb-63528f49e4c9",
+      "id": "urn:uuid:c062f28c-81de-4f9c-8ebf-aa303ca8f14d",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:33:21.463833+00:00",
+      "sealTimestamp": "2026-05-17T20:08:58.261277+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -94,16 +94,16 @@
       },
       "chainOfCustody": {
         "previousSeal": null,
-        "nextSeal": "urn:uuid:1b58eb92-5a76-464e-b03d-5c1d3a6dd2da",
+        "nextSeal": "urn:uuid:92431acf-dd07-4f9c-9e36-f548dbf342a0",
         "sequenceNumber": 1,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:33:21.476079+00:00",
+        "created": "2026-05-17T20:08:58.264512+00:00",
         "verification_method": "did:web:sirraya.org:actors/farmer#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "91d4e3d5bbf4c964b1c2864c1b6558cad3bccd09eb44ed7664f067616cc3dd41f6f630ece404f76a2b819bdead6b2743d3c0d5138cf228adf0702e862c3f0006"
+        "proof_value": "b9fee700f042c17500a2b12ae900684c9a2a93ff3bd49bb8773775fd255106038c8fc328e8abe3e1682db4146ef0c77866b21fec744d19f32a2583d14c47ff0b"
       }
     },
     {
@@ -112,9 +112,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:1b58eb92-5a76-464e-b03d-5c1d3a6dd2da",
+      "id": "urn:uuid:92431acf-dd07-4f9c-9e36-f548dbf342a0",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:33:21.477086+00:00",
+      "sealTimestamp": "2026-05-17T20:08:58.265512+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -140,7 +140,7 @@
           "batch_or_lot": "LOT-RUSSO-2026-05-14",
           "quantity": 500,
           "quantity_unit": "KG",
-          "description": "Organic Roma Tomatoes ï¿½ Packed 50ï¿½10KG",
+          "description": "Organic Roma Tomatoes — Packed 50×10KG",
           "additional": {}
         },
         "when": {
@@ -172,7 +172,7 @@
           "actor_license": {
             "type": "FoodBusinessOperator",
             "number": "FBO-IT-CAT-001",
-            "issuingAuthority": "Indian Ministry of Health"
+            "issuingAuthority": "Italian Ministry of Health"
           },
           "assertion_method": "did:web:sirraya.org:actors/packer#key-1"
         },
@@ -195,17 +195,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:05aabda7-5fb5-4f1b-88eb-63528f49e4c9",
-        "nextSeal": "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a",
+        "previousSeal": "urn:uuid:c062f28c-81de-4f9c-8ebf-aa303ca8f14d",
+        "nextSeal": "urn:uuid:67c3e1b0-298e-45b1-966f-3e24f2a03943",
         "sequenceNumber": 2,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:33:21.478080+00:00",
+        "created": "2026-05-17T20:08:58.265512+00:00",
         "verification_method": "did:web:sirraya.org:actors/packer#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "c530892884599f02a3e7f70445de97388184e77b74d18d8d5d319a75079c9c301e828dd15fa2f9d3ad1d1150b7c921c8b8884f42cd1556885082ba177ef6ed06"
+        "proof_value": "a91824eb512fa9fb7107de007db7f3795e8739e671d2c6404d553e1c3ed0d0b373a6b30b17f963bd51b344d7b724d968735d3f8c5d91734b6f03ef78aba3f804"
       }
     },
     {
@@ -214,9 +214,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a",
+      "id": "urn:uuid:67c3e1b0-298e-45b1-966f-3e24f2a03943",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:33:21.478080+00:00",
+      "sealTimestamp": "2026-05-17T20:08:58.265512+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -303,17 +303,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:1b58eb92-5a76-464e-b03d-5c1d3a6dd2da",
-        "nextSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
+        "previousSeal": "urn:uuid:92431acf-dd07-4f9c-9e36-f548dbf342a0",
+        "nextSeal": "urn:uuid:03c9a604-b6f3-41ba-a4d0-8acbfe1091ad",
         "sequenceNumber": 3,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:33:21.478080+00:00",
+        "created": "2026-05-17T20:08:58.266512+00:00",
         "verification_method": "did:web:sirraya.org:actors/customs-it#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "65d0c6c786c26eeaff3de40f84264c309b3ea5a927a28b5432c71800e25a6031b167293b02d6c112b62e5080b67fde8419acd1ea334646d9a5fbb0e52173ad0b"
+        "proof_value": "bde77781c6c9daa4016a111306f72c7279a063ce7277e433bdfaf438b7ef137ac1a11416bb8f5a3a1fde29956e98cdee09d5fa47943c1d02da1029d3fe3c530c"
       }
     },
     {
@@ -322,9 +322,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
+      "id": "urn:uuid:03c9a604-b6f3-41ba-a4d0-8acbfe1091ad",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:33:21.479082+00:00",
+      "sealTimestamp": "2026-05-17T20:08:58.267076+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -406,17 +406,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a",
-        "nextSeal": "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e",
+        "previousSeal": "urn:uuid:67c3e1b0-298e-45b1-966f-3e24f2a03943",
+        "nextSeal": "urn:uuid:d8f003f7-d91e-48d3-88d7-c14899d579a5",
         "sequenceNumber": 4,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:33:21.480088+00:00",
+        "created": "2026-05-17T20:08:58.267076+00:00",
         "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "e42b5a450a4c64a4e4a2423e625e0183a08c2ce1b2758d714de14348b76b140798e31da4511d145e6e9aff0672ee95b9f02c7b808ac3219f0b55d639dfbc2701"
+        "proof_value": "a29a22c3507829921f31c5d4334a2a5676fec1debb95e7b18793bddafce362468423b7930a3d2e1fe4f7647a0459eed41bdecd4c694ed9dcf264359b9eb83a08"
       }
     },
     {
@@ -425,9 +425,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e",
+      "id": "urn:uuid:d8f003f7-d91e-48d3-88d7-c14899d579a5",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:33:21.484091+00:00",
+      "sealTimestamp": "2026-05-17T20:08:58.273230+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -513,17 +513,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
-        "nextSeal": "urn:uuid:54329001-b93c-4fac-919e-18cdb031080e",
+        "previousSeal": "urn:uuid:03c9a604-b6f3-41ba-a4d0-8acbfe1091ad",
+        "nextSeal": "urn:uuid:704c4bbb-16bc-4f5a-925e-5d61afa12b17",
         "sequenceNumber": 5,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:33:21.484617+00:00",
+        "created": "2026-05-17T20:08:58.273230+00:00",
         "verification_method": "did:web:sirraya.org:actors/customs-sg#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "0990cb7e643698f59749a7b225424b714b0a8df08a200357fd90fafb6799c4312169735474ebe33d051fc8ed7c9e695c5e18e98bd7b96e1ac5563a21d7285804"
+        "proof_value": "1a1a20cf853b854244df5c08caa1aacaa0927ebcc9c3e359a8f19fa43fc836ba201d81952300ea3e321480f69f4f2dcae093fad7aede42d589a2d369dd39cc04"
       }
     },
     {
@@ -532,9 +532,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:54329001-b93c-4fac-919e-18cdb031080e",
+      "id": "urn:uuid:704c4bbb-16bc-4f5a-925e-5d61afa12b17",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:33:21.485661+00:00",
+      "sealTimestamp": "2026-05-17T20:08:58.275442+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -560,7 +560,7 @@
           "batch_or_lot": "LOT-RUSSO-2026-05-14",
           "quantity": 500,
           "quantity_unit": "KG",
-          "description": "Organic Roma Tomatoes ï¿½ Cold Chain Verified",
+          "description": "Organic Roma Tomatoes — Cold Chain Verified",
           "additional": {}
         },
         "when": {
@@ -620,17 +620,17 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e",
-        "nextSeal": "urn:uuid:edac1aee-e355-414a-bac8-0c892770d6cf",
+        "previousSeal": "urn:uuid:d8f003f7-d91e-48d3-88d7-c14899d579a5",
+        "nextSeal": "urn:uuid:a7e91cec-1fe4-4820-86da-198e17fd519d",
         "sequenceNumber": 6,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:33:21.486658+00:00",
+        "created": "2026-05-17T20:08:58.275442+00:00",
         "verification_method": "did:web:sirraya.org:actors/distributor#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "98783e800c96b75fc64e376994d6c7f1d28ed54acc2d5a452683f9b2838e46938cec2ae01949582b201caae897e50800313d49f978db1daa0f1dfe0a3d2ab009"
+        "proof_value": "3f0fbfaf8810cdd65ca29e4c69f6069f217038d8be20ce95c4e278b380d388fb504410e1e9ebfab2f217e1b71f127cd24dd5ed1c2d8280ac9104847435cdfe07"
       }
     },
     {
@@ -639,9 +639,9 @@
         "https://sirraya.org/contexts/vsc-v1.jsonld"
       ],
       "type": "VSC-SEAL",
-      "id": "urn:uuid:edac1aee-e355-414a-bac8-0c892770d6cf",
+      "id": "urn:uuid:a7e91cec-1fe4-4820-86da-198e17fd519d",
       "sealVersion": "1.0",
-      "sealTimestamp": "2026-05-17T16:33:21.486658+00:00",
+      "sealTimestamp": "2026-05-17T20:08:58.275442+00:00",
       "eventVector": {
         "what": {
           "product_identifiers": [
@@ -662,7 +662,7 @@
           "batch_or_lot": "LOT-RUSSO-2026-05-14",
           "quantity": 10,
           "quantity_unit": "KG",
-          "description": "Organic Roma Tomatoes ï¿½ Ready to Serve",
+          "description": "Organic Roma Tomatoes — Ready to Serve",
           "additional": {}
         },
         "when": {
@@ -729,31 +729,31 @@
         }
       },
       "chainOfCustody": {
-        "previousSeal": "urn:uuid:54329001-b93c-4fac-919e-18cdb031080e",
+        "previousSeal": "urn:uuid:704c4bbb-16bc-4f5a-925e-5d61afa12b17",
         "nextSeal": null,
         "sequenceNumber": 7,
         "chainId": "urn:uuid:chain-terra-to-table-20260517"
       },
       "proof": {
         "type": "Ed25519Signature2020",
-        "created": "2026-05-17T16:33:21.487647+00:00",
+        "created": "2026-05-17T20:08:58.275442+00:00",
         "verification_method": "did:web:sirraya.org:actors/restaurant#key-1",
         "proof_purpose": "assertionMethod",
-        "proof_value": "86a86c691c5c156189f843bb12a1afe249e749626703924de03dc60d4857f4e6a7274cf0b235e22cf48277c250c891a14883d0e2ea19674a1650fe185075ad04"
+        "proof_value": "90fa971e8467778d6b66c4ff46e870e865040a99ebb247e146b4c7ee787c791bff08099be4f4de29de0db18b0250c2448e7897fca1b9fb55cafb3ce31ccde20b"
       }
     }
   ],
   "dagBranches": {
-    "urn:uuid:05aabda7-5fb5-4f1b-88eb-63528f49e4c9": [
+    "urn:uuid:c062f28c-81de-4f9c-8ebf-aa303ca8f14d": [
       {
         "@context": [
           "https://www.w3.org/ns/credentials/v2",
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:e6159038-be61-4b52-8aea-3ec59d797255",
+        "id": "urn:uuid:b2a8a152-aa8a-4e6f-b2fb-ce174b4545e3",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:33:21.476079+00:00",
+        "sealTimestamp": "2026-05-17T20:08:58.264512+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -800,30 +800,30 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:05aabda7-5fb5-4f1b-88eb-63528f49e4c9",
+          "previousSeal": "urn:uuid:c062f28c-81de-4f9c-8ebf-aa303ca8f14d",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:33:21.477086+00:00",
+          "created": "2026-05-17T20:08:58.265512+00:00",
           "verification_method": "did:web:sirraya.org:actors/icea#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "5a4e1226f1af3016b7b5b29215298cfa77a46d845f0271569737b559032120b55738f47a008925c65cd437c98b6547d1e24a745f17f561a2ff102c1875712208"
+          "proof_value": "755b388090639e9fb87ec533044e4b7b7c9d1feecb51f0e3305c3fe89108925d58c556188a852db0465ba4a57c662784b0776779f1c8bf69b8e23cc3110b0507"
         }
       }
     ],
-    "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a": [
+    "urn:uuid:67c3e1b0-298e-45b1-966f-3e24f2a03943": [
       {
         "@context": [
           "https://www.w3.org/ns/credentials/v2",
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:86887472-bcea-4bf2-8df5-08adb363177e",
+        "id": "urn:uuid:173d86db-8968-414b-8b90-ef8cdedcf1dc",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:33:21.479082+00:00",
+        "sealTimestamp": "2026-05-17T20:08:58.266512+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -867,35 +867,35 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:3da2915b-9f71-4093-9700-b9e7a012105a",
+          "previousSeal": "urn:uuid:67c3e1b0-298e-45b1-966f-3e24f2a03943",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:33:21.479082+00:00",
+          "created": "2026-05-17T20:08:58.266512+00:00",
           "verification_method": "did:web:sirraya.org:actors/phyto#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "14258244c0040fb092b0e9e880632b549b995f40622cc6216afdaee6ef5721d101c6e8dbd57b991399a6b862856e372ce3d5bcff243ab361a787327ddfec300c"
+          "proof_value": "b7e1df522b9d278ab7b43002b6c536e94343ebcf586b89b8d3ac6d863d89aad73408dcc8828a97b9c4922eaba821ee3656dc7bac40785671dbb3d4667e90fd0d"
         }
       }
     ],
-    "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852": [
+    "urn:uuid:03c9a604-b6f3-41ba-a4d0-8acbfe1091ad": [
       {
         "@context": [
           "https://www.w3.org/ns/credentials/v2",
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:12b28343-2c5f-4326-8e7c-bb4098fd8918",
+        "id": "urn:uuid:563e0544-0f0a-4602-9373-a2395bbab054",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:33:21.480088+00:00",
+        "sealTimestamp": "2026-05-17T20:08:58.267076+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 4.0ï¿½C at Port of Catania",
+            "description": "Temperature: 4.0°C at Port of Catania",
             "additional": {}
           },
           "when": {
@@ -936,17 +936,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
+          "previousSeal": "urn:uuid:03c9a604-b6f3-41ba-a4d0-8acbfe1091ad",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:33:21.481080+00:00",
+          "created": "2026-05-17T20:08:58.268282+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "8a98866a3eb12b0f21890e572cad7feced48796834982a1ad6f5498e6f7163f8e48fe4cac1e1667edafff475ca4f7bbd14873508e255c2b790129f630ab94e0d"
+          "proof_value": "ec36c0f0a9b723d0edec2e616481babca9e39918d4eac16b4c37b98b1ca4d76f430c2dfa201b6068d154f30cb74915d94df6e7604ff35d00ccd0258704c84809"
         }
       },
       {
@@ -955,14 +955,14 @@
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:2335688c-1544-48ee-9d49-cc960375c2fa",
+        "id": "urn:uuid:21b7da06-e609-4beb-8760-ea799edd7738",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:33:21.481080+00:00",
+        "sealTimestamp": "2026-05-17T20:08:58.269279+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 3.8ï¿½C at Mediterranean Sea",
+            "description": "Temperature: 3.8°C at Mediterranean Sea",
             "additional": {}
           },
           "when": {
@@ -1003,17 +1003,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
+          "previousSeal": "urn:uuid:03c9a604-b6f3-41ba-a4d0-8acbfe1091ad",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:33:21.482086+00:00",
+          "created": "2026-05-17T20:08:58.269279+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "a0b7a3814faf3097c6f8c329339613e1f17f344341636baeb91a89138e016413113447506b8d1fb647880c4d9315b7e28681f4fe02b509d47415619c3f31750c"
+          "proof_value": "37658fbad274f8ff70914b22352c202a796940464dac17b7094eebde26255448cd62e7dbed45b55285112d857749dd9d8d59b202a9c28ab96445d951ffa8f306"
         }
       },
       {
@@ -1022,14 +1022,14 @@
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:915575f6-6c07-465d-a04f-ea8b0a386e56",
+        "id": "urn:uuid:1c2f5161-6a73-42b2-a05d-8113202b5f63",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:33:21.482086+00:00",
+        "sealTimestamp": "2026-05-17T20:08:58.269279+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 4.1ï¿½C at Suez Canal",
+            "description": "Temperature: 4.1°C at Suez Canal",
             "additional": {}
           },
           "when": {
@@ -1070,17 +1070,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
+          "previousSeal": "urn:uuid:03c9a604-b6f3-41ba-a4d0-8acbfe1091ad",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:33:21.482086+00:00",
+          "created": "2026-05-17T20:08:58.270112+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "54fdc293e83be90c40be965a8b3395e60258d0c80e3b783e0408aef29fd3b86e6994fbd89054cbc1f16902e5e4f1c74f6606c9f9f8a3fd19e946539c43dd5f0d"
+          "proof_value": "0fe0c95c136bec8759811c4a214fab10e5ba929257aad8abeaf12664b6e0940995321cb56b95ea2faa7e0107d162f7b3a08a05cd058e3bdcaec239848b207908"
         }
       },
       {
@@ -1089,14 +1089,14 @@
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:f20d13c6-cf50-4a16-a44c-3ab6cfbdd495",
+        "id": "urn:uuid:5f9e1ff2-1c5b-4ce0-90c0-5dcb0b8fc00a",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:33:21.482086+00:00",
+        "sealTimestamp": "2026-05-17T20:08:58.272226+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 3.9ï¿½C at Indian Ocean",
+            "description": "Temperature: 3.9°C at Indian Ocean",
             "additional": {}
           },
           "when": {
@@ -1137,17 +1137,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
+          "previousSeal": "urn:uuid:03c9a604-b6f3-41ba-a4d0-8acbfe1091ad",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:33:21.483085+00:00",
+          "created": "2026-05-17T20:08:58.273230+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "de35eff2e1d0c8ed199b86394aab028cb3cbd9a124b880d9b25e9be7cdee51ad4ba3f6b8093bccb4792b7a443af3d8a4997b7a854367fd697efaef191be23406"
+          "proof_value": "69cfe104e66b1e1dba78ccd4d73f03baf8b96d99433b738c96fc0ed37bc9563f67aee7b1df568ea21b34533b260e64d7ff6a8516e366fdff2365bbe7caf53503"
         }
       },
       {
@@ -1156,14 +1156,14 @@
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:26a0e3b2-0091-41b9-8174-3ce5b608e560",
+        "id": "urn:uuid:78c3fe95-7779-4e7d-81d1-b0a5b34229ae",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:33:21.483085+00:00",
+        "sealTimestamp": "2026-05-17T20:08:58.273230+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 4.2ï¿½C at Singapore Straits",
+            "description": "Temperature: 4.2°C at Singapore Straits",
             "additional": {}
           },
           "when": {
@@ -1204,30 +1204,30 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:c2a9770c-649a-4b8b-aee3-8f0354ebd852",
+          "previousSeal": "urn:uuid:03c9a604-b6f3-41ba-a4d0-8acbfe1091ad",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:33:21.483085+00:00",
+          "created": "2026-05-17T20:08:58.273230+00:00",
           "verification_method": "did:web:sirraya.org:actors/shipping#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "d236bdd3f2d18227fab765166431e1724b9330ce42cc5ec6cd280e14088854e15345c6ee99e4666248bfb5c2c9d2bafebf0bb7da77bcf9485d7f6d8fdea25d0d"
+          "proof_value": "ca9a4f142d07ad36115b755a0befae8a8e7dde6566de3a434418b24c16b1a8df49894bd190610c8e7cfe600f09283929184506a50d7c1c22ec7c91c049652a01"
         }
       }
     ],
-    "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e": [
+    "urn:uuid:d8f003f7-d91e-48d3-88d7-c14899d579a5": [
       {
         "@context": [
           "https://www.w3.org/ns/credentials/v2",
           "https://sirraya.org/contexts/vsc-v1.jsonld"
         ],
         "type": "VSC-SEAL",
-        "id": "urn:uuid:586b1338-927e-4fcf-99b7-b122276f5169",
+        "id": "urn:uuid:a09c99d2-2454-41b1-b4e9-2e90e683e0d3",
         "sealVersion": "1.0",
-        "sealTimestamp": "2026-05-17T16:33:21.484617+00:00",
+        "sealTimestamp": "2026-05-17T20:08:58.273230+00:00",
         "eventVector": {
           "what": {
             "product_identifiers": [],
@@ -1280,17 +1280,17 @@
           }
         },
         "chainOfCustody": {
-          "previousSeal": "urn:uuid:e1fd96cf-bfe8-464b-ba34-8df0455aeb1e",
+          "previousSeal": "urn:uuid:d8f003f7-d91e-48d3-88d7-c14899d579a5",
           "nextSeal": null,
           "sequenceNumber": 0,
           "chainId": "urn:uuid:chain-terra-to-table-20260517"
         },
         "proof": {
           "type": "Ed25519Signature2020",
-          "created": "2026-05-17T16:33:21.485661+00:00",
+          "created": "2026-05-17T20:08:58.275442+00:00",
           "verification_method": "did:web:sirraya.org:actors/sfa#key-1",
           "proof_purpose": "assertionMethod",
-          "proof_value": "68b1e787746ccc0872113b43a7997cb9dadb06b7282d72cf2e6dab3a049ff7ae8389a03be3bcc0b71a248aaccebb811e0e736d057f070718e716980ac9b4660f"
+          "proof_value": "ee36bd8cb3242b48d5477f34a285bce531f47184773c31a548417cffa40b05e21a6fd5df2e072ba05090ebe186d4cb35ed80c8bf31fbf52f43fa39f266146f00"
         }
       }
     ]

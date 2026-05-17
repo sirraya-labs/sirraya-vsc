@@ -10,7 +10,7 @@
       "id": "did:web:sirraya.org:actors/phyto#key-1",
       "type": "Ed25519VerificationKey2020",
       "controller": "did:web:sirraya.org:actors/phyto",
-      "publicKeyMultibase": "zed011cec94916b20fc65ad51b2ce3c10703afa73f3a1174bdfda52439af9c235745d"
+      "publicKeyMultibase": "zed01d8e92ae5de693402d54bd71433e722f7f3cbc24bd5f7dd012e66d1f9acf84204"
     }
   ],
   "assertionMethod": [

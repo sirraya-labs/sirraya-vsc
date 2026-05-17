@@ -10,7 +10,7 @@
       "id": "did:web:sirraya.org:actors/packer#key-1",
       "type": "Ed25519VerificationKey2020",
       "controller": "did:web:sirraya.org:actors/packer",
-      "publicKeyMultibase": "zed01309b0bec58c6302609f8173f605186b5cc2ee8ecde408ba57e7ed6b1c065c266"
+      "publicKeyMultibase": "zed01e1e30830c103422aa4b0989c46b607ad305db890d2ea25403352d99113f7b257"
     }
   ],
   "assertionMethod": [

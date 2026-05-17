@@ -10,7 +10,7 @@
       "id": "did:web:sirraya.org:actors/customs-it#key-1",
       "type": "Ed25519VerificationKey2020",
       "controller": "did:web:sirraya.org:actors/customs-it",
-      "publicKeyMultibase": "zed015779d25cf05ccbf0df15cd3a7beafea22359f75344ad83ced6ecc86adc6f11d2"
+      "publicKeyMultibase": "zed01d5af8a95b0e4441a29fe63577142f2de177df29351b640fa6908ec0b5e80b441"
     }
   ],
   "assertionMethod": [
