@@ -140,7 +140,7 @@
           "batch_or_lot": "LOT-RUSSO-2026-05-14",
           "quantity": 500,
           "quantity_unit": "KG",
-          "description": "Organic Roma Tomatoes — Packed 50×10KG",
+          "description": "Organic Roma Tomatoes ï¿½ Packed 50ï¿½10KG",
           "additional": {}
         },
         "when": {
@@ -172,7 +172,7 @@
           "actor_license": {
             "type": "FoodBusinessOperator",
             "number": "FBO-IT-CAT-001",
-            "issuingAuthority": "Italian Ministry of Health"
+            "issuingAuthority": "Indian Ministry of Health"
           },
           "assertion_method": "did:web:sirraya.org:actors/packer#key-1"
         },
@@ -560,7 +560,7 @@
           "batch_or_lot": "LOT-RUSSO-2026-05-14",
           "quantity": 500,
           "quantity_unit": "KG",
-          "description": "Organic Roma Tomatoes — Cold Chain Verified",
+          "description": "Organic Roma Tomatoes ï¿½ Cold Chain Verified",
           "additional": {}
         },
         "when": {
@@ -662,7 +662,7 @@
           "batch_or_lot": "LOT-RUSSO-2026-05-14",
           "quantity": 10,
           "quantity_unit": "KG",
-          "description": "Organic Roma Tomatoes — Ready to Serve",
+          "description": "Organic Roma Tomatoes ï¿½ Ready to Serve",
           "additional": {}
         },
         "when": {
@@ -895,7 +895,7 @@
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 4.0°C at Port of Catania",
+            "description": "Temperature: 4.0ï¿½C at Port of Catania",
             "additional": {}
           },
           "when": {
@@ -962,7 +962,7 @@
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 3.8°C at Mediterranean Sea",
+            "description": "Temperature: 3.8ï¿½C at Mediterranean Sea",
             "additional": {}
           },
           "when": {
@@ -1029,7 +1029,7 @@
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 4.1°C at Suez Canal",
+            "description": "Temperature: 4.1ï¿½C at Suez Canal",
             "additional": {}
           },
           "when": {
@@ -1096,7 +1096,7 @@
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 3.9°C at Indian Ocean",
+            "description": "Temperature: 3.9ï¿½C at Indian Ocean",
             "additional": {}
           },
           "when": {
@@ -1163,7 +1163,7 @@
           "what": {
             "product_identifiers": [],
             "classifications": [],
-            "description": "Temperature: 4.2°C at Singapore Straits",
+            "description": "Temperature: 4.2ï¿½C at Singapore Straits",
             "additional": {}
           },
           "when": {
