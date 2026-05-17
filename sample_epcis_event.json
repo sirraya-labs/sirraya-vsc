@@ -1,0 +1,34 @@
+{
+  "type": "ObjectEvent",
+  "eventID": "urn:uuid:f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "eventTime": "2026-05-16T06:00:00+02:00",
+  "eventTimeZone": "+02:00",
+  "action": "ADD",
+  "bizStep": "commissioning",
+  "disposition": "active",
+  "readPoint": {
+    "id": "urn:epc:id:sgln:8001234.00001.0"
+  },
+  "bizLocation": {
+    "id": "urn:epc:id:sgln:8001234.00001.0"
+  },
+  "epcList": [
+    "urn:epc:id:sgtin:8001234.00001.ABC123456789"
+  ],
+  "quantityList": [
+    {
+      "quantity": 500,
+      "uom": "KGM"
+    }
+  ],
+  "bizTransactionList": [
+    {
+      "type": "po",
+      "bizTransaction": "PO-2026-001"
+    }
+  ],
+  "extensions": {
+    "harvestDate": "2026-05-14",
+    "organic": true
+  }
+}
