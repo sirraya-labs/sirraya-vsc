@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║  VSC EVENT MATRIX — Complete Reference Implementation                       ║
+║  VSC EVENT MATRIX — Reference Implementation                       ║
 ║  Verifiable Supply Chain Core Specification v1.0                             ║
 ║  W3C VSC Community Group — sirraya.org                                       ║
 ║                                                                              ║
@@ -18,7 +18,6 @@
 ║    • Live DID Verification against sirraya.org                                ║
 ║    • Professional Verification Report                                        ║
 ║                                                                              ║
-║  Architecture: Vocabulary Neutral. Forkable. Royalty-Free. DLT Agnostic.     ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 PREREQUISITES:
@@ -1736,12 +1735,49 @@ class SealChain:
         }
     
     @log_exceptions
-    def export_chain(self, path: Path = None) -> Path:
-        """Export the chain to JSON."""
+    def export_chain(self, path: Path = None, embed_keys: bool = True) -> Path:
+        """Export the chain to JSON, optionally embedding public keys."""
         if path is None:
             config.CHAINS_DIR.mkdir(parents=True, exist_ok=True)
             chain_suffix = self.chain_id.split(':')[-1]
             path = config.CHAINS_DIR / f"chain-{chain_suffix}.json"
+        
+        linear_seals_data = []
+        for s in self.get_linear_chain():
+            seal_dict = s.to_dict()
+            if embed_keys:
+                # Find the actor and embed their public key
+                did = s.event_vector.who.actor_did
+                for aid in ACTORS:
+                    if self.km.has_actor(aid) and self.km.get_did(aid) == did:
+                        _, pub = self.km.get_keypair(aid)
+                        seal_dict["_embedded"] = {
+                            "publicKeyHex": CryptoManager.public_key_to_hex(pub),
+                            "publicKeyMultibase": CryptoManager.public_key_to_multibase(pub),
+                            "actorId": aid
+                        }
+                        break
+            linear_seals_data.append(seal_dict)
+        
+        dag_data = {}
+        for pid, bids in self._dag.items():
+            dag_data[pid] = []
+            for bid in bids:
+                if bid in self._seals:
+                    b = self._seals[bid]
+                    branch_dict = b.to_dict()
+                    if embed_keys:
+                        did = b.event_vector.who.actor_did
+                        for aid in ACTORS:
+                            if self.km.has_actor(aid) and self.km.get_did(aid) == did:
+                                _, pub = self.km.get_keypair(aid)
+                                branch_dict["_embedded"] = {
+                                    "publicKeyHex": CryptoManager.public_key_to_hex(pub),
+                                    "publicKeyMultibase": CryptoManager.public_key_to_multibase(pub),
+                                    "actorId": aid
+                                }
+                                break
+                    dag_data[pid].append(branch_dict)
         
         chain_data = {
             "chainId": self.chain_id,
@@ -1749,15 +1785,12 @@ class SealChain:
             "createdAt": self._created_at,
             "modifiedAt": self._modified_at,
             "exportedAt": datetime.now(timezone.utc).isoformat(),
-            "linearSeals": [s.to_dict() for s in self.get_linear_chain()],
-            "dagBranches": {
-                pid: [self._seals[bid].to_dict() for bid in bids]
-                for pid, bids in self._dag.items()
-            }
+            "linearSeals": linear_seals_data,
+            "dagBranches": dag_data
         }
         
         path.write_text(json.dumps(chain_data, indent=2, ensure_ascii=False))
-        logger.info(f"Chain exported to {path}")
+        logger.info(f"Chain exported to {path} (embedded keys: {embed_keys})")
         return path
     
     @classmethod
